@@ -1,0 +1,198 @@
+<?php
+
+namespace Database\Seeders;
+
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Seeder;
+use DB;
+
+class LessonSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     */
+    public function run(): void
+    {
+        DB::table('lessons')->insert([
+            ['lesson_id' => 1, 'day' => 'Senin', 'order' => 1, 'type_id' => 1, 'level_id' => 1],
+            ['lesson_id' => 2, 'day' => 'Senin', 'order' => 2, 'type_id' => 4, 'level_id' => 1],
+            ['lesson_id' => 3, 'day' => 'Senin', 'order' => 3, 'type_id' => 4, 'level_id' => 1],
+            ['lesson_id' => 4, 'day' => 'Senin', 'order' => 4, 'type_id' => 2, 'level_id' => 1],
+            ['lesson_id' => 5, 'day' => 'Senin', 'order' => 5, 'type_id' => 4, 'level_id' => 1],
+            ['lesson_id' => 6, 'day' => 'Senin', 'order' => 6, 'type_id' => 4, 'level_id' => 1],
+            ['lesson_id' => 7, 'day' => 'Senin', 'order' => 7, 'type_id' => 2, 'level_id' => 1],
+            ['lesson_id' => 8, 'day' => 'Senin', 'order' => 8, 'type_id' => 4, 'level_id' => 1],
+            ['lesson_id' => 9, 'day' => 'Senin', 'order' => 9, 'type_id' => 4, 'level_id' => 1],
+            ['lesson_id' => 10, 'day' => 'Selasa', 'order' => 1, 'type_id' => 4, 'level_id' => 1],
+            ['lesson_id' => 11, 'day' => 'Selasa', 'order' => 2, 'type_id' => 4, 'level_id' => 1],
+            ['lesson_id' => 12, 'day' => 'Selasa', 'order' => 3, 'type_id' => 4, 'level_id' => 1],
+            ['lesson_id' => 13, 'day' => 'Selasa', 'order' => 4, 'type_id' => 2, 'level_id' => 1],
+            ['lesson_id' => 14, 'day' => 'Selasa', 'order' => 5, 'type_id' => 4, 'level_id' => 1],
+            ['lesson_id' => 15, 'day' => 'Selasa', 'order' => 6, 'type_id' => 4, 'level_id' => 1],
+            ['lesson_id' => 16, 'day' => 'Selasa', 'order' => 7, 'type_id' => 2, 'level_id' => 1],
+            ['lesson_id' => 17, 'day' => 'Selasa', 'order' => 8, 'type_id' => 4, 'level_id' => 1],
+            ['lesson_id' => 18, 'day' => 'Selasa', 'order' => 9, 'type_id' => 4, 'level_id' => 1],
+            ['lesson_id' => 19, 'day' => 'Rabu', 'order' => 1, 'type_id' => 4, 'level_id' => 1],
+            ['lesson_id' => 20, 'day' => 'Rabu', 'order' => 2, 'type_id' => 4, 'level_id' => 1],
+            // Add the next batch here...
+        ]);
+
+        DB::table('lessons')->insert([
+            // Previous entries (up to lesson_id 20) already inserted in the first batch
+
+            ['lesson_id' => 21, 'day' => 'Rabu', 'order' => 3, 'type_id' => 4, 'level_id' => 1],
+            ['lesson_id' => 22, 'day' => 'Rabu', 'order' => 4, 'type_id' => 2, 'level_id' => 1],
+            ['lesson_id' => 23, 'day' => 'Rabu', 'order' => 5, 'type_id' => 4, 'level_id' => 1],
+            ['lesson_id' => 24, 'day' => 'Rabu', 'order' => 6, 'type_id' => 4, 'level_id' => 1],
+            ['lesson_id' => 25, 'day' => 'Rabu', 'order' => 7, 'type_id' => 2, 'level_id' => 1],
+            ['lesson_id' => 26, 'day' => 'Rabu', 'order' => 8, 'type_id' => 4, 'level_id' => 1],
+            ['lesson_id' => 27, 'day' => 'Rabu', 'order' => 9, 'type_id' => 4, 'level_id' => 1],
+            ['lesson_id' => 28, 'day' => 'Kamis', 'order' => 1, 'type_id' => 4, 'level_id' => 1],
+            ['lesson_id' => 29, 'day' => 'Kamis', 'order' => 2, 'type_id' => 4, 'level_id' => 1],
+            ['lesson_id' => 30, 'day' => 'Kamis', 'order' => 3, 'type_id' => 4, 'level_id' => 1],
+            ['lesson_id' => 31, 'day' => 'Kamis', 'order' => 4, 'type_id' => 2, 'level_id' => 1],
+            ['lesson_id' => 32, 'day' => 'Kamis', 'order' => 5, 'type_id' => 4, 'level_id' => 1],
+            ['lesson_id' => 33, 'day' => 'Kamis', 'order' => 6, 'type_id' => 4, 'level_id' => 1],
+            ['lesson_id' => 34, 'day' => 'Kamis', 'order' => 7, 'type_id' => 2, 'level_id' => 1],
+            ['lesson_id' => 35, 'day' => 'Kamis', 'order' => 8, 'type_id' => 4, 'level_id' => 1],
+            ['lesson_id' => 36, 'day' => 'Kamis', 'order' => 9, 'type_id' => 4, 'level_id' => 1],
+            ['lesson_id' => 37, 'day' => 'Jumat', 'order' => 1, 'type_id' => 3, 'level_id' => 1],
+            ['lesson_id' => 38, 'day' => 'Jumat', 'order' => 2, 'type_id' => 4, 'level_id' => 1],
+            ['lesson_id' => 39, 'day' => 'Jumat', 'order' => 3, 'type_id' => 4, 'level_id' => 1],
+            ['lesson_id' => 40, 'day' => 'Jumat', 'order' => 4, 'type_id' => 2, 'level_id' => 1],
+            ['lesson_id' => 41, 'day' => 'Jumat', 'order' => 5, 'type_id' => 4, 'level_id' => 1],
+            ['lesson_id' => 42, 'day' => 'Jumat', 'order' => 6, 'type_id' => 4, 'level_id' => 1],
+            ['lesson_id' => 43, 'day' => 'Jumat', 'order' => 7, 'type_id' => 4, 'level_id' => 1],
+            ['lesson_id' => 44, 'day' => 'Sabtu', 'order' => 1, 'type_id' => 4, 'level_id' => 1],
+            ['lesson_id' => 45, 'day' => 'Sabtu', 'order' => 2, 'type_id' => 4, 'level_id' => 1],
+            ['lesson_id' => 46, 'day' => 'Sabtu', 'order' => 3, 'type_id' => 2, 'level_id' => 1],
+            ['lesson_id' => 47, 'day' => 'Sabtu', 'order' => 4, 'type_id' => 4, 'level_id' => 1],
+            ['lesson_id' => 48, 'day' => 'Sabtu', 'order' => 5, 'type_id' => 4, 'level_id' => 1],
+            ['lesson_id' => 49, 'day' => 'Sabtu', 'order' => 6, 'type_id' => 2, 'level_id' => 1],
+            ['lesson_id' => 50, 'day' => 'Sabtu', 'order' => 7, 'type_id' => 4, 'level_id' => 1],
+            // Add further entries as needed in following parts...
+        ]);
+
+        DB::table('lessons')->insert([
+            ['lesson_id' => 51, 'day' => 'Sabtu', 'order' => 8, 'type_id' => 4, 'level_id' => 1],
+            ['lesson_id' => 52, 'day' => 'Senin', 'order' => 1, 'type_id' => 1, 'level_id' => 2],
+            ['lesson_id' => 53, 'day' => 'Senin', 'order' => 2, 'type_id' => 4, 'level_id' => 2],
+            ['lesson_id' => 54, 'day' => 'Senin', 'order' => 3, 'type_id' => 2, 'level_id' => 2],
+            ['lesson_id' => 55, 'day' => 'Senin', 'order' => 4, 'type_id' => 4, 'level_id' => 2],
+            ['lesson_id' => 56, 'day' => 'Senin', 'order' => 5, 'type_id' => 4, 'level_id' => 2],
+            ['lesson_id' => 57, 'day' => 'Senin', 'order' => 6, 'type_id' => 4, 'level_id' => 2],
+            ['lesson_id' => 58, 'day' => 'Senin', 'order' => 7, 'type_id' => 2, 'level_id' => 2],
+            ['lesson_id' => 59, 'day' => 'Senin', 'order' => 8, 'type_id' => 4, 'level_id' => 2],
+            ['lesson_id' => 60, 'day' => 'Senin', 'order' => 9, 'type_id' => 4, 'level_id' => 2],
+            ['lesson_id' => 61, 'day' => 'Senin', 'order' => 10, 'type_id' => 4, 'level_id' => 2],
+            ['lesson_id' => 62, 'day' => 'Selasa', 'order' => 1, 'type_id' => 4, 'level_id' => 2],
+            ['lesson_id' => 63, 'day' => 'Selasa', 'order' => 2, 'type_id' => 4, 'level_id' => 2],
+            ['lesson_id' => 64, 'day' => 'Selasa', 'order' => 3, 'type_id' => 2, 'level_id' => 2],
+            ['lesson_id' => 65, 'day' => 'Selasa', 'order' => 4, 'type_id' => 4, 'level_id' => 2],
+            ['lesson_id' => 66, 'day' => 'Selasa', 'order' => 5, 'type_id' => 4, 'level_id' => 2],
+            ['lesson_id' => 67, 'day' => 'Selasa', 'order' => 6, 'type_id' => 4, 'level_id' => 2],
+            ['lesson_id' => 68, 'day' => 'Selasa', 'order' => 7, 'type_id' => 2, 'level_id' => 2],
+            ['lesson_id' => 69, 'day' => 'Selasa', 'order' => 8, 'type_id' => 4, 'level_id' => 2],
+            ['lesson_id' => 70, 'day' => 'Selasa', 'order' => 9, 'type_id' => 4, 'level_id' => 2],
+            ['lesson_id' => 71, 'day' => 'Selasa', 'order' => 10, 'type_id' => 4, 'level_id' => 2],
+            ['lesson_id' => 72, 'day' => 'Rabu', 'order' => 1, 'type_id' => 4, 'level_id' => 2],
+            ['lesson_id' => 73, 'day' => 'Rabu', 'order' => 2, 'type_id' => 4, 'level_id' => 2],
+            ['lesson_id' => 74, 'day' => 'Rabu', 'order' => 3, 'type_id' => 2, 'level_id' => 2],
+            ['lesson_id' => 75, 'day' => 'Rabu', 'order' => 4, 'type_id' => 4, 'level_id' => 2],
+            ['lesson_id' => 76, 'day' => 'Rabu', 'order' => 5, 'type_id' => 4, 'level_id' => 2],
+            ['lesson_id' => 77, 'day' => 'Rabu', 'order' => 6, 'type_id' => 4, 'level_id' => 2],
+            ['lesson_id' => 78, 'day' => 'Rabu', 'order' => 7, 'type_id' => 2, 'level_id' => 2],
+            ['lesson_id' => 79, 'day' => 'Rabu', 'order' => 8, 'type_id' => 4, 'level_id' => 2],
+            ['lesson_id' => 80, 'day' => 'Rabu', 'order' => 9, 'type_id' => 4, 'level_id' => 2],
+        ]);
+
+        DB::table('lessons')->insert([
+            ['lesson_id' => 81, 'day' => 'Rabu', 'order' => 10, 'type_id' => 4, 'level_id' => 2],
+            ['lesson_id' => 82, 'day' => 'Kamis', 'order' => 1, 'type_id' => 4, 'level_id' => 2],
+            ['lesson_id' => 83, 'day' => 'Kamis', 'order' => 2, 'type_id' => 4, 'level_id' => 2],
+            ['lesson_id' => 84, 'day' => 'Kamis', 'order' => 3, 'type_id' => 2, 'level_id' => 2],
+            ['lesson_id' => 85, 'day' => 'Kamis', 'order' => 4, 'type_id' => 4, 'level_id' => 2],
+            ['lesson_id' => 86, 'day' => 'Kamis', 'order' => 5, 'type_id' => 4, 'level_id' => 2],
+            ['lesson_id' => 87, 'day' => 'Kamis', 'order' => 6, 'type_id' => 4, 'level_id' => 2],
+            ['lesson_id' => 88, 'day' => 'Kamis', 'order' => 7, 'type_id' => 2, 'level_id' => 2],
+            ['lesson_id' => 89, 'day' => 'Kamis', 'order' => 8, 'type_id' => 4, 'level_id' => 2],
+            ['lesson_id' => 90, 'day' => 'Kamis', 'order' => 9, 'type_id' => 4, 'level_id' => 2],
+            ['lesson_id' => 91, 'day' => 'Kamis', 'order' => 10, 'type_id' => 4, 'level_id' => 2],
+            ['lesson_id' => 92, 'day' => 'Jumat', 'order' => 1, 'type_id' => 3, 'level_id' => 2],
+            ['lesson_id' => 93, 'day' => 'Jumat', 'order' => 2, 'type_id' => 4, 'level_id' => 2],
+            ['lesson_id' => 94, 'day' => 'Jumat', 'order' => 3, 'type_id' => 4, 'level_id' => 2],
+            ['lesson_id' => 95, 'day' => 'Jumat', 'order' => 4, 'type_id' => 2, 'level_id' => 2],
+            ['lesson_id' => 96, 'day' => 'Jumat', 'order' => 5, 'type_id' => 4, 'level_id' => 2],
+            ['lesson_id' => 97, 'day' => 'Jumat', 'order' => 6, 'type_id' => 4, 'level_id' => 2],
+            ['lesson_id' => 98, 'day' => 'Jumat', 'order' => 7, 'type_id' => 4, 'level_id' => 2],
+            ['lesson_id' => 99, 'day' => 'Sabtu', 'order' => 1, 'type_id' => 4, 'level_id' => 2],
+            ['lesson_id' => 100, 'day' => 'Sabtu', 'order' => 2, 'type_id' => 4, 'level_id' => 2],
+            ['lesson_id' => 101, 'day' => 'Sabtu', 'order' => 3, 'type_id' => 2, 'level_id' => 2],
+            ['lesson_id' => 102, 'day' => 'Sabtu', 'order' => 4, 'type_id' => 4, 'level_id' => 2],
+            ['lesson_id' => 103, 'day' => 'Sabtu', 'order' => 5, 'type_id' => 4, 'level_id' => 2],
+            ['lesson_id' => 104, 'day' => 'Sabtu', 'order' => 6, 'type_id' => 4, 'level_id' => 2],
+            ['lesson_id' => 105, 'day' => 'Sabtu', 'order' => 7, 'type_id' => 4, 'level_id' => 2],
+            ['lesson_id' => 106, 'day' => 'Senin', 'order' => 1, 'type_id' => 1, 'level_id' => 3],
+            ['lesson_id' => 107, 'day' => 'Senin', 'order' => 2, 'type_id' => 4, 'level_id' => 3],
+            ['lesson_id' => 108, 'day' => 'Senin', 'order' => 3, 'type_id' => 4, 'level_id' => 3],
+            ['lesson_id' => 109, 'day' => 'Senin', 'order' => 4, 'type_id' => 2, 'level_id' => 3],
+            ['lesson_id' => 110, 'day' => 'Senin', 'order' => 5, 'type_id' => 4, 'level_id' => 3],
+        ]);
+
+        DB::table('lessons')->insert([
+            ['lesson_id' => 111, 'day' => 'Senin', 'order' => 6, 'type_id' => 4, 'level_id' => 3],  
+            ['lesson_id' => 112, 'day' => 'Senin', 'order' => 7, 'type_id' => 4, 'level_id' => 3],
+            ['lesson_id' => 113, 'day' => 'Senin', 'order' => 8, 'type_id' => 2, 'level_id' => 3],
+            ['lesson_id' => 114, 'day' => 'Senin', 'order' => 9, 'type_id' => 4, 'level_id' => 3],
+            ['lesson_id' => 115, 'day' => 'Senin', 'order' => 10, 'type_id' => 4, 'level_id' => 3],
+            ['lesson_id' => 116, 'day' => 'Selasa', 'order' => 1, 'type_id' => 4, 'level_id' => 3],
+            ['lesson_id' => 117, 'day' => 'Selasa', 'order' => 2, 'type_id' => 4, 'level_id' => 3],
+            ['lesson_id' => 118, 'day' => 'Selasa', 'order' => 3, 'type_id' => 4, 'level_id' => 3],
+            ['lesson_id' => 119, 'day' => 'Selasa', 'order' => 4, 'type_id' => 2, 'level_id' => 3],
+            ['lesson_id' => 120, 'day' => 'Selasa', 'order' => 5, 'type_id' => 4, 'level_id' => 3],
+            ['lesson_id' => 121, 'day' => 'Selasa', 'order' => 6, 'type_id' => 4, 'level_id' => 3],
+            ['lesson_id' => 122, 'day' => 'Selasa', 'order' => 7, 'type_id' => 4, 'level_id' => 3],
+            ['lesson_id' => 123, 'day' => 'Selasa', 'order' => 8, 'type_id' => 2, 'level_id' => 3],
+            ['lesson_id' => 124, 'day' => 'Selasa', 'order' => 9, 'type_id' => 4, 'level_id' => 3],
+            ['lesson_id' => 125, 'day' => 'Selasa', 'order' => 10, 'type_id' => 4, 'level_id' => 3],
+            ['lesson_id' => 126, 'day' => 'Rabu', 'order' => 1, 'type_id' => 4, 'level_id' => 3],
+            ['lesson_id' => 127, 'day' => 'Rabu', 'order' => 2, 'type_id' => 4, 'level_id' => 3],
+            ['lesson_id' => 128, 'day' => 'Rabu', 'order' => 3, 'type_id' => 4, 'level_id' => 3],
+            ['lesson_id' => 129, 'day' => 'Rabu', 'order' => 4, 'type_id' => 2, 'level_id' => 3],
+            ['lesson_id' => 130, 'day' => 'Rabu', 'order' => 5, 'type_id' => 4, 'level_id' => 3],
+            ['lesson_id' => 131, 'day' => 'Rabu', 'order' => 6, 'type_id' => 4, 'level_id' => 3],
+            ['lesson_id' => 132, 'day' => 'Rabu', 'order' => 7, 'type_id' => 4, 'level_id' => 3],
+            ['lesson_id' => 133, 'day' => 'Rabu', 'order' => 8, 'type_id' => 2, 'level_id' => 3],
+            ['lesson_id' => 134, 'day' => 'Rabu', 'order' => 9, 'type_id' => 4, 'level_id' => 3],
+            ['lesson_id' => 135, 'day' => 'Rabu', 'order' => 10, 'type_id' => 4, 'level_id' => 3],
+            ['lesson_id' => 136, 'day' => 'Kamis', 'order' => 1, 'type_id' => 4, 'level_id' => 3],
+            ['lesson_id' => 137, 'day' => 'Kamis', 'order' => 2, 'type_id' => 4, 'level_id' => 3],
+            ['lesson_id' => 138, 'day' => 'Kamis', 'order' => 3, 'type_id' => 4, 'level_id' => 3],
+            ['lesson_id' => 139, 'day' => 'Kamis', 'order' => 4, 'type_id' => 2, 'level_id' => 3],
+            ['lesson_id' => 140, 'day' => 'Kamis', 'order' => 5, 'type_id' => 4, 'level_id' => 3],
+        ]);
+
+        DB::table('lessons')->insert([
+            ['lesson_id' => 141, 'day' => 'Kamis', 'order' => 6, 'type_id' => 4, 'level_id' => 3],
+            ['lesson_id' => 142, 'day' => 'Kamis', 'order' => 7, 'type_id' => 4, 'level_id' => 3],
+            ['lesson_id' => 143, 'day' => 'Kamis', 'order' => 8, 'type_id' => 2, 'level_id' => 3],
+            ['lesson_id' => 144, 'day' => 'Kamis', 'order' => 9, 'type_id' => 4, 'level_id' => 3],
+            ['lesson_id' => 145, 'day' => 'Kamis', 'order' => 10, 'type_id' => 4, 'level_id' => 3],
+            ['lesson_id' => 146, 'day' => 'Jumat', 'order' => 1, 'type_id' => 3, 'level_id' => 3],
+            ['lesson_id' => 147, 'day' => 'Jumat', 'order' => 2, 'type_id' => 4, 'level_id' => 3],
+            ['lesson_id' => 148, 'day' => 'Jumat', 'order' => 3, 'type_id' => 4, 'level_id' => 3],
+            ['lesson_id' => 149, 'day' => 'Jumat', 'order' => 4, 'type_id' => 4, 'level_id' => 3],
+            ['lesson_id' => 150, 'day' => 'Jumat', 'order' => 5, 'type_id' => 2, 'level_id' => 3],
+            ['lesson_id' => 151, 'day' => 'Jumat', 'order' => 6, 'type_id' => 4, 'level_id' => 3],
+            ['lesson_id' => 152, 'day' => 'Jumat', 'order' => 7, 'type_id' => 4, 'level_id' => 3],
+            ['lesson_id' => 153, 'day' => 'Sabtu', 'order' => 1, 'type_id' => 4, 'level_id' => 3],
+            ['lesson_id' => 154, 'day' => 'Sabtu', 'order' => 2, 'type_id' => 4, 'level_id' => 3],
+            ['lesson_id' => 155, 'day' => 'Sabtu', 'order' => 3, 'type_id' => 4, 'level_id' => 3],
+            ['lesson_id' => 156, 'day' => 'Sabtu', 'order' => 4, 'type_id' => 2, 'level_id' => 3],
+            ['lesson_id' => 157, 'day' => 'Sabtu', 'order' => 5, 'type_id' => 4, 'level_id' => 3],
+            ['lesson_id' => 158, 'day' => 'Sabtu', 'order' => 6, 'type_id' => 4, 'level_id' => 3],
+            ['lesson_id' => 159, 'day' => 'Sabtu', 'order' => 7, 'type_id' => 2, 'level_id' => 3],
+            ['lesson_id' => 160, 'day' => 'Sabtu', 'order' => 8, 'type_id' => 4, 'level_id' => 3],
+        ]);
+    }
+}
