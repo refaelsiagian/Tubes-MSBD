@@ -15,8 +15,9 @@ return new class extends Migration
             $table->string('employee_id')->primary(); // String primary key
             $table->string('employee_name');
             $table->string('phone_number');
-            $table->text('address');
-            $table->string('account_number'); // Encrypted account number
+            $table->text('address')->nullable();
+            $table->string('account_number')->nullable(); // Encrypted account number\
+            $table->string('bank_name')->nullable();
             $table->enum('status', ['active', 'inactive']);
             $table->timestamps();
         });

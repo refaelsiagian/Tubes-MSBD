@@ -5,10 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Major extends Model
+class DayTime extends Model
 {
     use HasFactory;
 
-    protected $guarded = ['major_id'];
-    protected $primaryKey = 'major_id';
+    protected $guarded = ['time_id'];
+    protected $primaryKey = 'time_id';
+
 }

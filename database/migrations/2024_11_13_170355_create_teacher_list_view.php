@@ -14,7 +14,7 @@ return new class extends Migration
         DB::statement("
             CREATE VIEW teacher_list_view AS
             SELECT 
-                DISTINCT CONCAT(r.grade, '-', COALESCE(r.subclass, '')) AS class,
+                r.room_id,
                 e.employee_name AS teacher,
                 s.subject_abb AS subject
             FROM 
@@ -30,7 +30,7 @@ return new class extends Migration
             JOIN 
                 subjects s ON sl.subject_id = s.subject_id
             GROUP BY 
-                class, teacher, subject
+                r.room_id, teacher, subject
             ORDER BY 
                 r.room_id;
         ");

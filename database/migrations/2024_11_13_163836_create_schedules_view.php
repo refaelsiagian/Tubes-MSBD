@@ -13,31 +13,28 @@ return new class extends Migration
     {
         DB::statement('
             CREATE VIEW schedules_view AS
-            SELECT 
-                CASE 
-                    WHEN r.subclass IS NOT NULL AND r.subclass != "" THEN CONCAT(r.grade, "-", r.subclass)
-                    ELSE r.grade
-                END AS class,
+            SELECT
+                s.room_id,
                 l.day,
                 l.order,
-                CASE 
-                    WHEN lt.type_id = 4 THEN s.subject_abb
+                CASE
+                    WHEN l.type_id = 4 THEN sa.subject_abb
                     ELSE lt.desc
                 END AS lesson,
-                GROUP_CONCAT(ej.code_name SEPARATOR " / ") AS teacher
-            FROM schedules sch
-            JOIN subject_levels sl ON sch.subject_level_id = sl.subject_level_id
-            JOIN subjects s ON sl.subject_id = s.subject_id
-            JOIN lessons l ON sch.lesson_id = l.lesson_id
-            JOIN lesson_types lt ON l.type_id = lt.type_id
-            JOIN rooms r ON sch.room_id = r.room_id
-            JOIN employee_jobs ej ON sch.teacher_id = ej.employee_job_id
-            JOIN employees e ON ej.employee_id = e.employee_id
-            GROUP BY 
-                class, l.day, l.order, lesson
-            ORDER BY 
-                FIELD(l.day, "senin", "selasa", "rabu", "kamis", "jumat", "sabtu"),
-                l.order;
+                CASE
+                    WHEN l.type_id = 4 THEN GROUP_CONCAT(DISTINCT ej.code_name SEPARATOR "/")
+                    ELSE NULL
+                END AS teacher
+            FROM
+                schedules s
+            LEFT JOIN lessons l ON s.lesson_id = l.lesson_id
+            LEFT JOIN lesson_types lt ON l.type_id = lt.type_id
+            LEFT JOIN subject_levels sl ON s.subject_level_id = sl.subject_level_id
+            LEFT JOIN subjects sa ON sl.subject_id = sa.subject_id
+            LEFT JOIN employee_jobs ej ON s.teacher_id = ej.employee_job_id
+            LEFT JOIN employees e ON ej.employee_id = e.employee_id
+            GROUP BY
+                s.room_id, l.day, l.order, l.type_id, sa.subject_abb, lt.desc;
         ');
     }
 

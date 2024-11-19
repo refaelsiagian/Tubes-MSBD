@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('schedules', function (Blueprint $table) {
             $table->id('schedule_id'); // Primary key
-            $table->unsignedBigInteger('subject_level_id'); // Foreign key to subject_levels
+            $table->unsignedBigInteger('subject_level_id')->nullable(); // Foreign key to subject_levels
             $table->unsignedBigInteger('lesson_id'); // Foreign key to lessons
-            $table->unsignedBigInteger('teacher_id'); // Foreign key to employee_jobs
+            $table->unsignedBigInteger('teacher_id')->nullable(); // Foreign key to employee_jobs
             $table->unsignedBigInteger('room_id'); // Foreign key to rooms
             $table->unsignedBigInteger('semester_id'); // Foreign key to semesters
             $table->timestamps();

@@ -9,9 +9,11 @@ class Level extends Model
 {
     use HasFactory;
 
-    protected $table = 'levels';
+    protected $guarded = ['level_id'];
     protected $primaryKey = 'level_id';
-    protected $fillable = ['level_name', 'rates_per_lesson'];
 
-    public $timestamps = false;
+    public function lesson()
+    {
+        return $this->hasMany(Lesson::class, 'level_id', 'level_id');
+    }
 }
