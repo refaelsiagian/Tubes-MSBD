@@ -12,14 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('class_teachers', function (Blueprint $table) {
-            $table->id('class_teacher_id');
-            $table->unsignedBigInteger('teacher_id');
-            $table->unsignedBigInteger('room_id');
+            $table->id();
+            $table->foreignId('teacher_id')->constrained('employee_jobs')->onDelete('cascade');
+            $table->foreignId('room_id')->constrained()->onDelete('cascade');
             $table->timestamps();
-
-            // Foreign key constraints
-            $table->foreign('teacher_id')->references('employee_job_id')->on('employee_jobs')->onDelete('cascade');
-            $table->foreign('room_id')->references('room_id')->on('rooms')->onDelete('cascade');
         });
     }
 

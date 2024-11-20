@@ -9,11 +9,10 @@ class Semester extends Model
 {
     use HasFactory;
 
-    protected $guarded = ['semester_id'];
-    protected $primaryKey = 'semester_id';
+    protected $guarded = ['id'];
 
     public function schedule()
     {
-        return $this->hasMany(Schedule::class, 'semester_id', 'semester_id');
+        return $this->hasMany(Schedule::class);
     }
 }

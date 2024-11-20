@@ -12,10 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('jobs', function (Blueprint $table) {
-            $table->id('job_id'); // Primary key
+            $table->id(); // Primary key
             $table->string('job_name'); // Name of the job
             $table->integer('salary')->nullable(); // Salary (in rupiah or relevant currency)
-            $table->enum('detail', ['per bulan', 'per les'])->nullable(); // Type of salary payment
         });
     }
 

@@ -14,25 +14,25 @@ return new class extends Migration
         DB::statement("
             CREATE VIEW teacher_list_view AS
             SELECT 
-                r.room_id,
+                r.id,
                 e.employee_name AS teacher,
                 s.subject_abb AS subject
             FROM 
                 schedules sch
             JOIN 
-                rooms r ON sch.room_id = r.room_id
+                rooms r ON sch.room_id = r.id
             JOIN 
-                employee_jobs ej ON sch.teacher_id = ej.employee_job_id
+                employee_jobs ej ON sch.teacher_id = ej.id
             JOIN 
-                employees e ON ej.employee_id = e.employee_id
+                employees e ON ej.employee_id = e.id
             JOIN 
-                subject_levels sl ON sch.subject_level_id = sl.subject_level_id
+                subject_levels sl ON sch.subject_level_id = sl.id
             JOIN 
-                subjects s ON sl.subject_id = s.subject_id
+                subjects s ON sl.subject_id = s.id
             GROUP BY 
-                r.room_id, teacher, subject
+                r.id, teacher, subject
             ORDER BY 
-                r.room_id;
+                r.id;
         ");
     }
 

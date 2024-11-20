@@ -12,15 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('employee_jobs', function (Blueprint $table) {
-            $table->id('employee_job_id');
+            $table->id();
             $table->string('employee_id');
             $table->unsignedBigInteger('job_id');
             $table->string('code_name')->nullable();
             $table->timestamps();
 
             // Foreign keys
-            $table->foreign('employee_id')->references('employee_id')->on('employees')->onDelete('cascade');
-            $table->foreign('job_id')->references('job_id')->on('jobs')->onDelete('cascade');
+            $table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade');
+            $table->foreign('job_id')->references('id')->on('jobs')->onDelete('cascade');
         });
     }
 

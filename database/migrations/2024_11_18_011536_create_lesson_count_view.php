@@ -15,16 +15,16 @@ return new class extends Migration
             CREATE VIEW lesson_count_view AS
             SELECT 
                 s.teacher_id AS employee_job_id,
-                sl.subject_level_id,
+                sl.id AS subject_level_id,
                 COUNT(s.lesson_id) AS lesson_count
             FROM 
                 schedules s
             JOIN 
-                subject_levels sl ON s.subject_level_id = sl.subject_level_id
+                subject_levels sl ON s.subject_level_id = sl.id
             WHERE 
                 s.teacher_id IS NOT NULL -- Hanya menghitung lesson yang memiliki teacher
             GROUP BY 
-                s.teacher_id, sl.subject_level_id;
+                s.teacher_id, sl.id;
         ");
     }
 

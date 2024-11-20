@@ -9,11 +9,10 @@ class Subject extends Model
 {
     use HasFactory;
 
-    protected $guarded = ['subject_id'];
-    protected $primaryKey = 'subject_id';
+    protected $guarded = ['id'];
 
     public function subjectLevel()
     {
-        return $this->hasMany(SubjectLevel::class, 'subject_id', 'subject_id');
+        return $this->hasMany(SubjectLevel::class);
     }
 }

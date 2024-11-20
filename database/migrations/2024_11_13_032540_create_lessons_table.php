@@ -12,16 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('lessons', function (Blueprint $table) {
-            $table->id('lesson_id');
+            $table->id();
             $table->enum('day', ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu']);
-            $table->integer('order'); // Position or order of the lesson in the day
-            $table->unsignedBigInteger('type_id'); // Foreign key for lesson type
-            $table->unsignedBigInteger('level_id'); // Foreign key for level
+            $table->integer('order'); 
+            $table->foreignId('type_id')->constrained('lesson_types')->onDelete('cascade'); 
+            $table->foreignId('level_id')->constrained()->onDelete('cascade'); 
             $table->timestamps();
-
-            // Foreign key constraints
-            $table->foreign('type_id')->references('type_id')->on('lesson_types')->onDelete('cascade');
-            $table->foreign('level_id')->references('level_id')->on('levels')->onDelete('cascade');
         });
     }
 

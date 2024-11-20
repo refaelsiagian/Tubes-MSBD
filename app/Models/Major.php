@@ -9,6 +9,15 @@ class Major extends Model
 {
     use HasFactory;
 
-    protected $guarded = ['major_id'];
-    protected $primaryKey = 'major_id';
+    protected $guarded = ['id'];
+
+    public function subjectLevel()
+    {
+        return $this->hasMany(SubjectLevel::class);
+    }
+
+    public function room()
+    {
+        return $this->hasMany(Room::class);
+    }
 }

@@ -9,8 +9,7 @@ class Room extends Model
 {
     use HasFactory;
 
-    protected $guarded = ['room_id'];
-    protected $primaryKey = 'room_id';
+    protected $guarded = ['id'];
 
     public function classTeacher()
     {
@@ -19,7 +18,7 @@ class Room extends Model
 
     public function schedule()
     {
-        return $this->hasMany(Schedule::class, 'room_id', 'room_id');
+        return $this->hasMany(Schedule::class);
     }
 
 }

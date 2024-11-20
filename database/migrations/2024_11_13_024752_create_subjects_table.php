@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('subjects', function (Blueprint $table) {
-            $table->id('subject_id'); // Primary key
+            $table->id(); // Primary key
             $table->string('subject_name'); // Nama mata pelajaran
             $table->string('subject_abb', 10); // Singkatan mata pelajaran
             $table->timestamps();

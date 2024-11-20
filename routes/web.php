@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\JobController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,5 +16,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('dashboard.index');
+});
+
+Route::prefix('admin')->group(function () {
+
+    Route::resource('/jobs', JobController::class)->except('show');
+
+    
 });

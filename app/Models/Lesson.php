@@ -9,21 +9,20 @@ class Lesson extends Model
 {
     use HasFactory;
 
-    protected $guarded = ['lesson_id'];
-    protected $primaryKey = 'lesson_id';
+    protected $guarded = ['id'];
 
     public function lessonType()
     {
-        return $this->belongsTo(LessonType::class, 'type_id', 'type_id');
+        return $this->belongsTo(LessonType::class);
     }
 
     public function level()
     {
-        return $this->belongsTo(Level::class, 'level_id', 'level_id');
+        return $this->belongsTo(Level::class);
     }
 
     public function schedule()
     {
-        return $this->hasMany(Schedule::class, 'lesson_id', 'lesson_id');
+        return $this->hasMany(Schedule::class);
     }
 }

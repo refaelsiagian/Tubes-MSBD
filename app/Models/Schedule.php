@@ -9,31 +9,30 @@ class Schedule extends Model
 {
     use HasFactory;
 
-    protected $guarded = ['schedule_id'];
-    protected $primaryKey = 'schedule_id';
+    protected $guarded = ['id'];
 
-    public function subject_level()
+    public function subjectLevel()
     {
-        return $this->belongsTo(SubjectLevel::class, 'subject_level_id', 'subject_level_id');
+        return $this->belongsTo(SubjectLevel::class);
     }
 
     public function lesson()
     {
-        return $this->belongsTo(Lesson::class, 'lesson_id', 'lesson_id');
+        return $this->belongsTo(Lesson::class);
     }
 
     public function teacher()
     {
-        return $this->belongsTo(EmployeeJob::class, 'teacher_id', 'employee_job_id');
+        return $this->belongsTo(EmployeeJob::class);
     }
 
     public function room()
     {
-        return $this->belongsTo(Room::class, 'room_id', 'room_id');
+        return $this->belongsTo(Room::class);
     }
 
     public function semester()
     {
-        return $this->belongsTo(Semester::class, 'semester_id', 'semester_id');
+        return $this->belongsTo(Semester::class);
     }
 }

@@ -15,18 +15,18 @@ class JobSeeder extends Seeder
     public function run(): void
     {
         Job::insert([
-            ['job_name' => 'yayasan', 'salary' => null, 'detail' => null],
-            ['job_name' => 'kepala sekolah smp', 'salary' => 1500000, 'detail' => 'per bulan'],
-            ['job_name' => 'wakil kepala sekolah smp', 'salary' => 300000, 'detail' => 'per bulan'],
-            ['job_name' => 'kepala sekolah sma', 'salary' => 1500000, 'detail' => 'per bulan'],
-            ['job_name' => 'wakil kepala sekolah sma', 'salary' => 300000, 'detail' => 'per bulan'],
-            ['job_name' => 'kepala sekolah smk', 'salary' => 1500000, 'detail' => 'per bulan'],
-            ['job_name' => 'wakil kepala sekolah smk', 'salary' => 300000, 'detail' => 'per bulan'],
-            ['job_name' => 'guru wali kelas', 'salary' => 100000, 'detail' => 'per bulan'],
-            ['job_name' => 'guru', 'salary' => null, 'detail' => 'per les'],
-            ['job_name' => 'staff tata usaha', 'salary' => 1500000, 'detail' => 'per bulan'],
-            ['job_name' => 'karyawan', 'salary' => 1500000, 'detail' => 'per bulan'],
-            ['job_name' => 'satpam', 'salary' => 900000, 'detail' => 'per bulan'],
+            ['job_name' => 'Yayasan', 'salary' => null],
+            ['job_name' => 'Kepala Sekolah SMP', 'salary' => 1500000],
+            ['job_name' => 'Wakil Kepala Sekolah SMP', 'salary' => 300000],
+            ['job_name' => 'Kepala Sekolah SMA', 'salary' => 1500000],
+            ['job_name' => 'Wakil Kepala Sekolah SMA', 'salary' => 300000],
+            ['job_name' => 'Kepala Sekolah SMK', 'salary' => 1500000],
+            ['job_name' => 'Wakil Kepala Sekolah SMK', 'salary' => 300000],
+            ['job_name' => 'Guru Wali Kelas', 'salary' => 100000],
+            ['job_name' => 'Guru', 'salary' => null],
+            ['job_name' => 'Staff Tata Usaha', 'salary' => 1500000],
+            ['job_name' => 'Karyawan', 'salary' => 1500000],
+            ['job_name' => 'Satpam', 'salary' => 900000],
         ]);
     }
 }

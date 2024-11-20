@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('day_times', function (Blueprint $table) {
-            $table->id('time_id'); // Ini setara dengan AUTO_INCREMENT PRIMARY KEY
+            $table->id(); // Ini setara dengan AUTO_INCREMENT PRIMARY KEY
             $table->string('day'); // VARCHAR(50) untuk kolom 'day'
             $table->time('start_time'); // TIME untuk kolom 'start_time'
         });

@@ -9,26 +9,25 @@ class EmployeeJob extends Model
 {
     use HasFactory;
 
-    protected $guarded = ['employee_job_id'];
-    protected $primaryKey = 'employee_job_id';
+    protected $guarded = ['id'];
 
     public function classTeacher()
     {
-        return $this->hasOne(ClassTeacher::class, 'employee_job_id', 'teacher_id');
+        return $this->hasOne(ClassTeacher::class);
     }
 
     public function employee()
     {
-        return $this->belongsTo(Employee::class, 'employee_id', 'employee_id');
+        return $this->belongsTo(Employee::class);
     }
 
     public function job()
     {
-        return $this->belongsTo(Job::class, 'job_id', 'job_id');
+        return $this->belongsTo(Job::class);
     }
 
     public function schedule()
     {
-        return $this->hasMany(Schedule::class, 'employee_job_id', 'teacher_id');
+        return $this->hasMany(Schedule::class);
     }
 }

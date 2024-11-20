@@ -27,12 +27,12 @@ return new class extends Migration
                 END AS teacher
             FROM
                 schedules s
-            LEFT JOIN lessons l ON s.lesson_id = l.lesson_id
-            LEFT JOIN lesson_types lt ON l.type_id = lt.type_id
-            LEFT JOIN subject_levels sl ON s.subject_level_id = sl.subject_level_id
-            LEFT JOIN subjects sa ON sl.subject_id = sa.subject_id
-            LEFT JOIN employee_jobs ej ON s.teacher_id = ej.employee_job_id
-            LEFT JOIN employees e ON ej.employee_id = e.employee_id
+            LEFT JOIN lessons l ON s.lesson_id = l.id
+            LEFT JOIN lesson_types lt ON l.type_id = lt.id
+            LEFT JOIN subject_levels sl ON s.subject_level_id = sl.id
+            LEFT JOIN subjects sa ON sl.subject_id = sa.id
+            LEFT JOIN employee_jobs ej ON s.teacher_id = ej.id
+            LEFT JOIN employees e ON ej.employee_id = e.id
             GROUP BY
                 s.room_id, l.day, l.order, l.type_id, sa.subject_abb, lt.desc;
         ');

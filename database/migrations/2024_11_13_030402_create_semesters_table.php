@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('semesters', function (Blueprint $table) {
-            $table->id('semester_id'); // Primary key
+            $table->id(); // Primary key
             $table->string('academic_year'); // Example: 24/25
         });
     }

@@ -9,7 +9,6 @@ class DayTime extends Model
 {
     use HasFactory;
 
-    protected $guarded = ['time_id'];
-    protected $primaryKey = 'time_id';
+    protected $guarded = ['id'];
 
 }

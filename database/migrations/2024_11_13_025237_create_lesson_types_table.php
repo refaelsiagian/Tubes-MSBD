@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('lesson_types', function (Blueprint $table) {
-            $table->id('type_id'); // Primary key
+            $table->id(); // Primary key
             $table->string('desc'); // Description of the lesson type
             $table->integer('duration'); // Duration of the lesson in minutes
         });

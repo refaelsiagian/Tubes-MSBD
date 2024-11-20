@@ -9,12 +9,11 @@ class Job extends Model
 {
     use HasFactory;
 
-    protected $guarded = ['job_id'];
-    protected $primaryKey = 'job_id';
+    protected $guarded = ['id'];
 
     public function employeeJob()
     {
-        return $this->hasMany(Employee::class, 'job_id', 'job_id');
+        return $this->hasMany(Employee::class);
     }
 
 }

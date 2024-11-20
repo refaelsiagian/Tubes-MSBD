@@ -19,9 +19,9 @@ return new class extends Migration
             FROM 
                 lesson_count_view lc
             JOIN 
-                subject_levels sl ON lc.subject_level_id = sl.subject_level_id
+                subject_levels sl ON lc.subject_level_id = sl.id
             JOIN 
-                levels l ON sl.level_id = l.level_id
+                levels l ON sl.level_id = l.id
             GROUP BY 
                 lc.employee_job_id;
         ");

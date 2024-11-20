@@ -9,11 +9,10 @@ class Level extends Model
 {
     use HasFactory;
 
-    protected $guarded = ['level_id'];
-    protected $primaryKey = 'level_id';
+    protected $guarded = ['id'];
 
     public function lesson()
     {
-        return $this->hasMany(Lesson::class, 'level_id', 'level_id');
+        return $this->hasMany(Lesson::class);
     }
 }

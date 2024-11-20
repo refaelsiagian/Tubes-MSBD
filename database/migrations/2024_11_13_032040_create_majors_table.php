@@ -9,10 +9,10 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up(): void  
     {
         Schema::create('majors', function (Blueprint $table) {
-            $table->id('major_id');
+            $table->id();
             $table->string('major_name');
             $table->string('major_abb');
             $table->timestamps();

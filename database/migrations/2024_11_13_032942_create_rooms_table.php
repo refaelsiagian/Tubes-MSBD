@@ -12,15 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('rooms', function (Blueprint $table) {
-            $table->id('room_id'); // Primary key with custom name
+            $table->id(); // Primary key with custom name
             $table->integer('grade'); // Grade level (e.g., 1, 2, 3)
-            $table->unsignedBigInteger('level_id'); // Create the foreign key column without constraint
-            $table->unsignedBigInteger('major_id')->nullable(); // Create the foreign key column without constraint
+            $table->foreignId('level_id')->constrained()->onDelete('cascade'); // Create the foreign key column without constraint
+            $table->foreignId('major_id')->nullable()->constrained()->onDelete('cascade'); // Create the foreign key column without constraint
             $table->string('subclass')->nullable(); // Subclass identifier (e.g., A, B, C)
-        
-            // Define foreign key constraints separately
-            $table->foreign('level_id')->references('level_id')->on('levels')->onDelete('cascade');
-            $table->foreign('major_id')->references('major_id')->on('majors')->onDelete('set null');
         });
         
     }

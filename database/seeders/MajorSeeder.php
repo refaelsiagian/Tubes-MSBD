@@ -14,9 +14,9 @@ class MajorSeeder extends Seeder
     public function run(): void
     {
         DB::table('majors')->insert([
-            ['major_id' => 1, 'major_name' => 'Teknik Otomotif', 'major_abb' => 'TO'],
-            ['major_id' => 2, 'major_name' => 'Bisnis dan Manajemen', 'major_abb' => 'BM'],
-            ['major_id' => 3, 'major_name' => 'Teknologi Informasi dan Komunikasi', 'major_abb' => 'TIK'],
+            ['major_name' => 'Teknik Otomotif', 'major_abb' => 'TO'],
+            ['major_name' => 'Bisnis dan Manajemen', 'major_abb' => 'BM'],
+            ['major_name' => 'Teknologi Informasi dan Komunikasi', 'major_abb' => 'TIK'],
         ]);
     }
 }

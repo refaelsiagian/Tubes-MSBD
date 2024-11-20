@@ -9,11 +9,10 @@ class LessonType extends Model
 {
     use HasFactory;
 
-    protected $guarded = ['type_id'];
-    protected $primaryKey = 'type_id';
+    protected $guarded = ['id'];
 
     public function lesson()
     {
-        return $this->hasMany(Lesson::class, 'type_id', 'type_id');
+        return $this->hasMany(Lesson::class);
     }
 }
