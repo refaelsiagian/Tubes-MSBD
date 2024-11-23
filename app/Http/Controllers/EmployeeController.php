@@ -4,14 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class LessonController extends Controller
+class EmployeeController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        return view('employee.index', [
+            'page' => 'Employees',
+            'active' => 'employees'
+        ]);
+
     }
 
     /**
@@ -19,7 +23,10 @@ class LessonController extends Controller
      */
     public function create()
     {
-        //
+        return view('employee.create', [
+            'page' => 'Add Employee',
+            'active' => 'employees'
+        ]);
     }
 
     /**
@@ -33,7 +40,7 @@ class LessonController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Employee $employee)
     {
         //
     }
@@ -41,15 +48,18 @@ class LessonController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Employee $employee)
     {
-        //
+        return view('employee.edit', [
+            'page' => 'Edit Employee',
+            'active' => 'employees'
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Employee $employee)
     {
         //
     }
@@ -57,7 +67,7 @@ class LessonController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Employee $employee)
     {
         //
     }

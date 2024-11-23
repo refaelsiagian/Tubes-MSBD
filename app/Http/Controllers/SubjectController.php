@@ -3,18 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Job;
 
-class JobController extends Controller
+class SubjectController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('job.index', [
-            'page' => 'Job',
-            'active' => 'job'
+        return view('subject.index', [
+            'page' => 'Subjects',
+            'active' => 'subject'
         ]);
     }
 
@@ -23,9 +22,9 @@ class JobController extends Controller
      */
     public function create()
     {
-        return view('job.create', [
-            'page' => 'Add Job',
-            'active' => 'job'
+        return view('subject.create', [
+            'page' => 'Add Subject',
+            'active' => 'subject'
         ]);
     }
 
@@ -40,7 +39,7 @@ class JobController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Job $job)
+    public function show(Subject $subject)
     {
         //
     }
@@ -48,18 +47,18 @@ class JobController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Job $job)
+    public function edit(Subject $subject)
     {
-        return view('job.edit', [
-            'page' => 'Edit Job',
-            'active' => 'job'
+        return view('subject.edit', [
+            'page' => 'Edit Subject',
+            'active' => 'subject'
         ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Job $job)
+    public function update(Request $request, Subject $subject)
     {
         //
     }
@@ -67,7 +66,7 @@ class JobController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Job $job)
+    public function destroy(Subject $subject)
     {
         //
     }
