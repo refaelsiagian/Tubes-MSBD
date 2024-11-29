@@ -12,6 +12,16 @@ class Employee extends Model
     protected $guarded = ['id'];
     protected $keyType = 'string';
 
+    protected $fillable = [
+        'id',
+        'employee_name',
+        'phone_number',
+        'address',
+        'account_number',
+        'bank_name',
+    ];
+    
+
     public function employeeJob()
     {
         return $this->hasMany(EmployeeJob::class);
