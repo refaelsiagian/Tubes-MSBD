@@ -16,11 +16,15 @@ return new class extends Migration
             $table->string('employee_id');
             $table->unsignedBigInteger('job_id');
             $table->string('code_name')->nullable();
+            $table->unsignedBigInteger('level_id')->nullable();
+            $table->unsignedBigInteger('room_id')->nullable();
             $table->timestamps();
 
             // Foreign keys
             $table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade');
             $table->foreign('job_id')->references('id')->on('jobs')->onDelete('cascade');
+            $table->foreign('level_id')->references('id')->on('levels')->onDelete('cascade');
+            $table->foreign('room_id')->references('id')->on('rooms')->onDelete('cascade');
         });
     }
 

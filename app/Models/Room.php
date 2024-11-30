@@ -21,4 +21,9 @@ class Room extends Model
         return $this->hasMany(Schedule::class);
     }
 
+    public function employeeJob()
+    {
+        return $this->hasMany(EmployeeJob::class);
+    }
+
 }

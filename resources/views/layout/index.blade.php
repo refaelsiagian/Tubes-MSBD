@@ -15,6 +15,32 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
+
+    <style>
+      .sidebar {
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* Mengatur tinggi sidebar menjadi 100% tinggi viewport */
+}
+
+.offcanvas-body {
+  flex: 1; /* Membuat body fleksibel memenuhi ruang yang tersisa */
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto; /* Pastikan scroll bekerja jika konten terlalu banyak */
+}
+
+.nav {
+  flex-grow: 1; /* Mengisi ruang kosong */
+}
+
+.sidebar-heading,
+hr,
+.nav:last-child {
+  margin-top: auto; /* Menempatkan elemen di bagian bawah */
+}
+
+    </style>
   </head>
   <body>
     
