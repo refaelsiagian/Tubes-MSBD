@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Subject;
+
 
 class SubjectController extends Controller
 {
@@ -11,9 +13,12 @@ class SubjectController extends Controller
      */
     public function index()
     {
+        $subjects = Subject::all();
+
         return view('subject.index', [
             'page' => 'Subjects',
-            'active' => 'subject'
+            'active' => 'subject',
+            'subjects' => $subjects
         ]);
     }
 
@@ -33,7 +38,14 @@ class SubjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'subject_name' => 'required|string|max:255',
+            'subject_abb' => 'required|string|max:10',
+        ]);
+
+        Subject::create($validatedData);
+
+        return redirect()->route('subjects.index')->with('success', 'Subject successfully created.');
     }
 
     /**
@@ -51,7 +63,8 @@ class SubjectController extends Controller
     {
         return view('subject.edit', [
             'page' => 'Edit Subject',
-            'active' => 'subject'
+            'active' => 'subject',
+            'subject' => $subject
         ]);
     }
 
@@ -60,7 +73,14 @@ class SubjectController extends Controller
      */
     public function update(Request $request, Subject $subject)
     {
-        //
+        $validatedData = $request->validate([
+            'subject_name' => 'required|string|max:255',
+            'subject_abb' => 'required|string|max:50',
+        ]);
+    
+        $subject->update($validatedData);
+    
+        return redirect()->route('subjects.index')->with('success', 'Subject successfully updated.');
     }
 
     /**
@@ -68,6 +88,13 @@ class SubjectController extends Controller
      */
     public function destroy(Subject $subject)
     {
-        //
+
+        if ($subject->schedules()->count() > 0) {
+            return redirect()->route('subjects.index')->with('error', 'Cannot delete subject because it is still used in schedule.');
+        }
+
+        $subject->delete();
+    
+        return redirect()->route('subjects.index')->with('success', 'Subject successfully deleted.');
     }
 }

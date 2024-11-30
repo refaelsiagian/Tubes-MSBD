@@ -12,9 +12,12 @@ class JobController extends Controller
      */
     public function index()
     {
+        $jobs = Job::all();
+
         return view('job.index', [
             'page' => 'Job',
-            'active' => 'job'
+            'active' => 'job',
+            'jobs' => $jobs
         ]);
     }
 
@@ -34,7 +37,14 @@ class JobController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'job_name' => 'required|string|max:255',
+            'salary' => 'required|numeric|min:0',
+        ]);
+
+        Job::create($validated);
+
+        return redirect()->route('jobs.index')->with('success', 'Job has been created successfully.');
     }
 
     /**
@@ -52,7 +62,8 @@ class JobController extends Controller
     {
         return view('job.edit', [
             'page' => 'Edit Job',
-            'active' => 'job'
+            'active' => 'job',
+            'job' => $job
         ]);
     }
 
