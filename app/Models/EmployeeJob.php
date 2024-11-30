@@ -30,4 +30,14 @@ class EmployeeJob extends Model
     {
         return $this->hasMany(Schedule::class);
     }
+
+    public function level()
+    {
+        return $this->belongsTo(Level::class);
+    }
+
+    public function room()
+    {
+        return $this->belongsTo(Room::class);
+    }
 }

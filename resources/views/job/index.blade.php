@@ -33,7 +33,7 @@
                     <tr>
                         <td>{{ $job->id }}</td>
                         <td>{{ $job->job_name }}</td>
-                        <td>{{ $job->salary }}</td>
+                        <td>{{ $job->salary ? 'Rp' . number_format($job->salary, 0, ',', '.') : $job->salary }}</td>
                         <td>
                         <form action="{{ route('jobs.edit', $job->id) }}" method="post" class="d-inline">
                         @csrf
