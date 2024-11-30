@@ -20,12 +20,6 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link d-flex align-items-center gap-2" href="{{ route('subjects.index') }}">
-              <svg class="bi"><use xlink:href="#cart"/></svg>
-              Subjects
-            </a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link d-flex align-items-center gap-2" href=" {{ route('employees.index') }} ">
               <svg class="bi"><use xlink:href="#people"/></svg>
               Employees

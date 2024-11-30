@@ -17,13 +17,10 @@ class EmployeeController extends Controller
         $employees = Employee::with('EmployeeJob')->get();
 
         foreach ($employees as $employee) {
-            try {
-                if ($employee->account_number != null) {
-                    $employee->account_number = decrypt($employee->account_number);
-                }
-            } catch (\Exception $e) {
-                $employee->account_number = 'Invalid payload';
+            if ($employee->account_number != null) {
+                $employee->account_number = decrypt($employee->account_number);
             }
+            $employee->phone_number = decrypt($employee->phone_number);
         }
         
 
