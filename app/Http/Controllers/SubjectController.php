@@ -66,7 +66,7 @@ class SubjectController extends Controller
         $levelsJson = json_encode($validatedData['levels']);
         $majorsJson = json_encode($validatedData['majors'] ?? []);
 
-        DB::statement('CALL InsertSubjectLevel(?, ?, ?)', [$subjectId, $levelsJson, $majorsJson]);
+        DB::statement('CALL insert_subject_levels_procedure(?, ?, ?)', [$levelsJson, $majorsJson, $subjectId]);
 
         return redirect()->route('subjects.index')->with('success', 'Subject successfully created.');
     }
@@ -137,8 +137,11 @@ return redirect()->route('subjects.index')->with('success', 'Subject updated suc
      */
     public function destroy(Subject $subject)
     {
+        $count = $subject->subjectLevel->flatMap(function ($subjectLevel) {
+            return $subjectLevel->schedule;
+        })->count();
 
-        if ($subject->schedules()->count() > 0) {
+        if ($count > 0) {
             return redirect()->route('subjects.index')->with('error', 'Cannot delete subject because it is still used in schedule.');
         }
 
