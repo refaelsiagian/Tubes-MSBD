@@ -33,53 +33,53 @@
     <a href="{{ route('employees.create') }}" class="btn btn-primary mb-3">Add New Employee</a>
     
     <div class="table-responsive small col-lg-12">
-    <table class="table table-striped table-sm">
-        <thead>
-            <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Name</th>
-                <th scope="col">Phone Number</th>
-                <th scope="col">Adress</th>
-                <th scope="col">Account Number</th>
-                <th scope="col">Bank Name</th>
-                <th scope="col">Status</th>
-                <th scope="col">Action</th>
-            </tr>
-        </thead>
-        <tbody>
-        @foreach($employees as $employee)
-            <tr>
-                <td>{{ $employee->id}}</td>
-                <td>{{ $employee->employee_name }}</td>
-                <td>{{ $employee->phone_number }}</td>
-                <td>{{ $employee->address ?? '-' }}</td>
-                <td>{{ $employee->account_number ?? '-' }}</td>
-                <td>{{ $employee->bank_name ?? '-' }}</td>
-                <td>{{ $employee->status }}</td>
-                <td>
-                    <form action="{{ route('employees.edit', $employee->id) }}" method="post" class="d-inline">
-                        @csrf
-                        @method('GET')
-                        <input type="hidden" name="role" value="admin">
-                        <button type="submit" class="btn btn-sm btn-outline-success">
-                            <i class="bi bi-pencil-square"></i>
-                        </button>
-                    </form>
-                    @if(optional($employee->EmployeeJob->first())->job_id != 1)
-                    <form action="{{ route('employees.update', $employee->id) }}" method="post" class="d-inline">
-                        @csrf
-                        @method('PUT')
-                        <input type="hidden" name="status" value="inactive">
-                        <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('Are you sure to inactive this employee?')">
-                            <i class="bi bi-x-circle"></i>
-                        </button>
-                    </form>
-                    @endif
-                </td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
-</div>
+        <table class="table table-striped table-sm">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Phone Number</th>
+                    <th scope="col">Adress</th>
+                    <th scope="col">Account Number</th>
+                    <th scope="col">Bank Name</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach($employees as $employee)
+                <tr>
+                    <td>{{ $employee->id}}</td>
+                    <td>{{ $employee->employee_name }}</td>
+                    <td>{{ $employee->phone_number }}</td>
+                    <td>{{ $employee->address ?? '-' }}</td>
+                    <td>{{ $employee->account_number ?? '-' }}</td>
+                    <td>{{ $employee->bank_name ?? '-' }}</td>
+                    <td>{{ $employee->status }}</td>
+                    <td>
+                        <form action="{{ route('employees.edit', $employee->id) }}" method="post" class="d-inline">
+                            @csrf
+                            @method('GET')
+                            <input type="hidden" name="role" value="admin">
+                            <button type="submit" class="btn btn-sm btn-outline-success">
+                                <i class="bi bi-pencil-square"></i>
+                            </button>
+                        </form>
+                        @if(optional($employee->EmployeeJob->first())->job_id != 1)
+                        <form action="{{ route('employees.update', $employee->id) }}" method="post" class="d-inline">
+                            @csrf
+                            @method('PUT')
+                            <input type="hidden" name="status" value="inactive">
+                            <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('Are you sure to inactive this employee?')">
+                                <i class="bi bi-x-circle"></i>
+                            </button>
+                        </form>
+                        @endif
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
     
 @endsection

@@ -26,4 +26,26 @@ class Room extends Model
         return $this->hasMany(EmployeeJob::class);
     }
 
+    public function level()
+    {
+        return $this->belongsTo(Level::class);
+    }
+
+    public function getClassNameAttribute()
+    {
+        // Ambil nama level
+        $levelName = $this->level->level_name ?? '';
+
+        // Gabungkan grade dan subclass (jika ada)
+        $className = $this->grade;
+        if ($this->subclass) {
+            $className .= '-' . $this->subclass;
+        }
+
+        // Tambahkan nama level
+        $className .= ' ' . strtoupper($levelName);
+
+        return $className;
+    }
+
 }

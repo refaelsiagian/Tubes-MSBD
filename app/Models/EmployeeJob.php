@@ -40,4 +40,9 @@ class EmployeeJob extends Model
     {
         return $this->belongsTo(Room::class);
     }
+
+    public function lessonCount()
+    {
+        return $this->hasMany(LessonCount::class);
+    }
 }

@@ -13,7 +13,7 @@ class Lesson extends Model
 
     public function lessonType()
     {
-        return $this->belongsTo(LessonType::class);
+        return $this->belongsTo(LessonType::class, 'type_id');
     }
 
     public function level()
@@ -24,5 +24,15 @@ class Lesson extends Model
     public function schedule()
     {
         return $this->hasMany(Schedule::class);
+    }
+
+    public function scheduleTime()
+    {
+        return $this->has(SubjectLevel::class);
+    }
+
+    public function dayTime()
+    {
+        return $this->belongsTo(DayTime::class, 'day', 'day');
     }
 }

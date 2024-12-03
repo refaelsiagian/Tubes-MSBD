@@ -21,7 +21,7 @@ class SubjectLevel extends Model
         return $this->belongsTo(Subject::class);
     }
 
-    public function level()
+  public function level()
     {
         return $this->belongsTo(Level::class);
     }
@@ -31,4 +31,8 @@ class SubjectLevel extends Model
         return $this->belongsTo(Major::class);
     }
 
+    public function lessonCount()
+    {
+        return $this->hasMany(LessonCount::class);
+    }
 }

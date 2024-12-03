@@ -33,4 +33,8 @@ class Level extends Model
         return $this->belongsTo(Major::class, 'major_id');
     }
 
+    public function room()
+    {
+        return $this->hasMany(Room::class);
+    }
 }

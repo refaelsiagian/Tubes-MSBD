@@ -14,12 +14,12 @@ class DayTimeSeeder extends Seeder
     public function run(): void
     {
         DB::table('day_times')->insert([
-            ['day' => 'Senin', 'start_time' => '08:00:00'],
-            ['day' => 'Selasa', 'start_time' => '08:00:00'],
-            ['day' => 'Rabu', 'start_time' => '08:00:00'],
-            ['day' => 'Kamis', 'start_time' => '08:00:00'],
-            ['day' => 'Jumat', 'start_time' => '08:00:00'],
-            ['day' => 'Sabtu', 'start_time' => '08:00:00'],
+            ['day' => 'Senin', 'start_time' => '07:30:00'],
+            ['day' => 'Selasa', 'start_time' => '07:30:00'],
+            ['day' => 'Rabu', 'start_time' => '07:30:00'],
+            ['day' => 'Kamis', 'start_time' => '07:30:00'],
+            ['day' => 'Jumat', 'start_time' => '07:30:00'],
+            ['day' => 'Sabtu', 'start_time' => '07:30:00'],
         ]);
     }
 }
