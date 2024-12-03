@@ -1203,5 +1203,14 @@ class ScheduleSeeder extends Seeder
         ['id' => 1106, 'subject_level_id' => 54, 'lesson_id' => 160, 'teacher_id' => 14, 'room_id' => 20, 'semester_id' => 1],
     ]);
 
+    DB::table('schedules')->insert([
+        ['id' => 1107, 'subject_level_id' => null, 'lesson_id' => 49, 'teacher_id' => null, 'room_id' => 1, 'semester_id' => 1],
+        ['id' => 1108, 'subject_level_id' => null, 'lesson_id' => 49, 'teacher_id' => null, 'room_id' => 2, 'semester_id' => 1],
+        ['id' => 1109, 'subject_level_id' => null, 'lesson_id' => 49, 'teacher_id' => null, 'room_id' => 3, 'semester_id' => 1],
+        ['id' => 1110, 'subject_level_id' => null, 'lesson_id' => 49, 'teacher_id' => null, 'room_id' => 4, 'semester_id' => 1],
+        ['id' => 1111, 'subject_level_id' => null, 'lesson_id' => 49, 'teacher_id' => null, 'room_id' => 5, 'semester_id' => 1],
+        ['id' => 1112, 'subject_level_id' => null, 'lesson_id' => 49, 'teacher_id' => null, 'room_id' => 6, 'semester_id' => 1],
+    ]);
+
     }
 }

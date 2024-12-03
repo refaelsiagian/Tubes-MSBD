@@ -17,28 +17,63 @@
     <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
 
     <style>
-      .sidebar {
-  display: flex;
-  flex-direction: column;
-  height: 100vh; /* Mengatur tinggi sidebar menjadi 100% tinggi viewport */
+      /* .sidebar {
+        display: flex;
+        flex-direction: column;
+        height: 100vh; /* Mengatur tinggi sidebar menjadi 100% tinggi viewport */
+      } */
+
+      header {
+  position: relative;  /* Menjaga posisi header tetap di atas */
+  z-index: 1060; /* Pastikan header di atas sidebar */
 }
 
-.offcanvas-body {
-  flex: 1; /* Membuat body fleksibel memenuhi ruang yang tersisa */
-  display: flex;
-  flex-direction: column;
-  overflow-y: auto; /* Pastikan scroll bekerja jika konten terlalu banyak */
+
+.sidebar {
+  position: fixed;
+  top: 0; /* Pastikan sidebar dimulai dari atas */
+  left: 0;
+  height: 100vh; /* Mengatur tinggi sidebar menjadi penuh */
+  z-index: 1050; /* Pastikan sidebar berada di bawah header */
+  margin-top: 48px; /* Sesuaikan dengan tinggi header Anda */
 }
 
-.nav {
-  flex-grow: 1; /* Mengisi ruang kosong */
-}
 
-.sidebar-heading,
-hr,
-.nav:last-child {
-  margin-top: auto; /* Menempatkan elemen di bagian bawah */
-}
+
+      .offcanvas-body {
+        flex: 1; /* Membuat body fleksibel memenuhi ruang yang tersisa */
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto; /* Pastikan scroll bekerja jika konten terlalu banyak */
+      }
+
+      .nav {
+        flex-grow: 1; /* Mengisi ruang kosong */
+      }
+
+      .sidebar-heading,
+      hr,
+      .nav:last-child {
+        margin-top: auto; /* Menempatkan elemen di bagian bawah */
+      }
+
+        .custom-card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
+        }
+        .custom-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+            background-color: #f8f9fa;
+        }
+
+        input[readonly] {
+            background-color: #e9ecef; /* Warna abu-abu Bootstrap */
+            color: #6c757d; /* Warna teks Bootstrap */
+            cursor: not-allowed;
+        }
 
     </style>
   </head>

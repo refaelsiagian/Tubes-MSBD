@@ -11,4 +11,9 @@ class DayTime extends Model
 
     protected $guarded = ['id'];
 
+    public function lesson()
+    {
+        return $this->hasMany(Lesson::class, 'day', 'day');
+    }
+
 }
