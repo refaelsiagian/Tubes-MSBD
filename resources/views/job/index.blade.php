@@ -16,6 +16,12 @@
         </div>
     @endif
 
+    @if(session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+    @endif
+
     <a href="{{ route('jobs.create') }}" class="btn btn-primary mb-3">Add New Job</a>
 
     <div class="table-responsive small col-lg-12">
@@ -42,7 +48,16 @@
                         <button type="submit" class="btn btn-sm btn-outline-success">
                             <i class="bi bi-pencil-square"></i>
                         </button>
-                    </form>
+                        </form>
+
+                        @if($job->id >= 6)
+                        <form action="{{ route('jobs.destroy', $job->id) }}" method="DELETE" class="delete-form" style="display: inline-block;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('Are you sure you want to delete this job?')">
+                                <i class="bi bi-trash-fill"></i>
+                            </button>
+                        @endif
                         </td>
                     </tr>
                 @endforeach

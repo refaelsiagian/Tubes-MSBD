@@ -18,4 +18,9 @@ class Job extends Model
         return $this->hasMany(Employee::class);
     }
 
+    public function employees()
+    {
+        return $this->belongsToMany(Employee::class, 'employee_jobs', 'job_id', 'employee_id');
+    }
+
 }

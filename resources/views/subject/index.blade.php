@@ -34,6 +34,9 @@
                 <th scope="col">ID</th>
                 <th scope="col">Subject Name</th>
                 <th scope="col">Singkatan</th>
+                <th scope="col">Levels</th>
+                <th scope="col">Actions</th>
+
             </tr>
         </thead>
         <tbody>
@@ -42,6 +45,27 @@
                 <td>{{ $subject->id}}</td>
                 <td>{{ $subject->subject_name }}</td>
                 <td>{{ $subject->subject_abb }}</td>
+                <td>
+                @if ($subject->subjectLevel->isNotEmpty())
+    @php
+        $levels = $subject->subjectLevel->map(function ($subjectLevel) {
+            // Ambil nama level
+            $levelName = strtoupper($subjectLevel->level->level_name ?? '');
+            
+            // Jika level SMK, tambahkan major
+            if ($levelName === 'SMK' && $subjectLevel->major) {
+                return $levelName . ' ' . strtoupper($subjectLevel->major->major_abb ?? '');
+            }
+
+            // Jika bukan SMK, kembalikan nama level
+            return $levelName;
+        });
+    @endphp
+    {{ implode(' / ', $levels->unique()->toArray()) }}
+@else
+    -
+@endif
+                </td>
                 <td>
                     <form action="{{ route('subjects.edit', $subject->id) }}" method="post" class="d-inline">
                         @csrf

@@ -10,6 +10,7 @@ class Major extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
+    protected $fillable = ['major_name'];
 
     public function subjectLevel()
     {
@@ -20,4 +21,9 @@ class Major extends Model
     {
         return $this->hasMany(Room::class);
     }
+
+    public function subjects()
+{
+    return $this->belongsToMany(Subject::class, 'subject_levels', 'major_id', 'subject_id');
+}
 }
