@@ -20,4 +20,9 @@ class Level extends Model
     {
         return $this->hasMany(EmployeeJob::class);
     }
+
+    public function room()
+    {
+        return $this->hasMany(Room::class);
+    }
 }

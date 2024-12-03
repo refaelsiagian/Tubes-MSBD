@@ -40,4 +40,19 @@ class Schedule extends Model
     {
         return $this->belongsTo(Subject::class, 'subject_level_id');
     }
+
+    public function scheduleTimes()
+    {
+        return $this->hasMany(ScheduleTime::class, 'lesson_id', 'lesson_id');
+    }
+
+    public function scopeFilterSchedules($query, $roomId, $day = 'Senin')
+    {
+        return $query->where('room_id', $roomId)
+            ->when($day, function ($query, $day) {
+                $query->whereHas('lesson', function ($lessonQuery) use ($day) {
+                    $lessonQuery->where('day', $day);
+                });
+            });
+    }
 }

@@ -7,6 +7,7 @@ use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ScheduleController;    
 
 /*
 |--------------------------------------------------------------------------
@@ -24,7 +25,7 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::middleware('guest')->group(function () {
     Route::get('/login', [LoginController::class, 'index'])->name('login');
-    Route::post('/login', [LoginController::class, 'authenticate'])->name('login');
+    Route::post('/login', [LoginController::class, 'authenticate'])->name('authenticate');
 });
 
 Route::middleware('auth')->group(function () {
@@ -43,6 +44,11 @@ Route::middleware('auth')->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'admin'])->name('dashboard.admin');
 
         Route::resource('/subjects', SubjectController::class)->except('show');
+
+        Route::get('/schedules', [ScheduleController::class, 'index'])->name('schedules.index');
+        Route::get('/schedules/{room}', [ScheduleController::class, 'show'])->name('schedules.show');
+        Route::get('/schedules/edit/{schedule}', [ScheduleController::class, 'edit'])->name('schedules.edit');
+        Route::put('/schedules/update/{schedule}', [ScheduleController::class, 'update'])->name('schedules.update');
     
     });
 
