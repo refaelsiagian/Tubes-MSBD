@@ -4,14 +4,27 @@
         <h5 class="offcanvas-title" id="sidebarMenuLabel">Era Utama</h5>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#sidebarMenu" aria-label="Close"></button>
       </div>
+
+      @php
+        $role = auth()->user()->role->role;
+      @endphp
+
       <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
         <ul class="nav flex-column">
           <li class="nav-item">
-            <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page" href="{{ auth()->user()->role->role }}/dashboard">
+            <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page" href="{{ url('/'.$role.'/dashboard')}}">
               <svg class="bi"><use xlink:href="#house-add"/></svg>
               Dashboard
             </a>
           </li>
+          @can('role', collect(['teacher', 'employee', 'principal', 'inspector','admin']))
+          <li class="nav-item">
+            <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page" href="{{ url('/'.$role.'/salary')}}">
+              <svg class="bi"><use xlink:href="#house-add"/></svg>
+              Salary
+            </a>
+          </li>
+          @endcan
           @can('role', 'foundation')
           <li class="nav-item">
             <a class="nav-link d-flex align-items-center gap-2" href="{{ route('jobs.index') }}">

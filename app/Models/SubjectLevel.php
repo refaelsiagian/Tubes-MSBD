@@ -20,4 +20,9 @@ class SubjectLevel extends Model
     {
         return $this->belongsTo(Subject::class);
     }
+
+    public function lessonCount()
+    {
+        return $this->hasMany(LessonCount::class);
+    }
 }
