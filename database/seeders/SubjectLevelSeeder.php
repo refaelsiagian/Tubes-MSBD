@@ -110,7 +110,7 @@ class SubjectLevelSeeder extends Seeder
             [92, 31, 3, '3'],
             [93, 53, 3, '3'],
             [94, 54, 3, '3'],
-            [95, 54, 3, '3'],
+            [95, 31, 2, '2'],
         ];
 
         foreach ($subjectLevels as $subjectLevel) {

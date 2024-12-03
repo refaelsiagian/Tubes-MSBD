@@ -10,6 +10,7 @@ class Level extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
+    protected $fillable = ['level_name'];
 
     public function lesson()
     {
@@ -20,4 +21,16 @@ class Level extends Model
     {
         return $this->hasMany(EmployeeJob::class);
     }
+
+    public function subjects()
+    {
+        return $this->belongsToMany(Subject::class, 'subject_levels', 'level_id', 'subject_id')
+                ->withPivot('major_id');
+    }
+
+    public function major()
+    {
+        return $this->belongsTo(Major::class, 'major_id');
+    }
+
 }

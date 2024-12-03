@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Models\Subject;
+use App\Models\Level;
+use App\Models\Major;
 
 
 class SubjectController extends Controller
@@ -13,12 +16,13 @@ class SubjectController extends Controller
      */
     public function index()
     {
-        $subjects = Subject::all();
+        $subjects = Subject::with(['subjectLevel.level', 'subjectLevel.major'])->get();
+
 
         return view('subject.index', [
             'page' => 'Subjects',
             'active' => 'subject',
-            'subjects' => $subjects
+            'subjects' => $subjects,
         ]);
     }
 
@@ -27,9 +31,14 @@ class SubjectController extends Controller
      */
     public function create()
     {
+        $levels = Level::all();
+        $majors = Major::all();
+
         return view('subject.create', [
             'page' => 'Add Subject',
-            'active' => 'subject'
+            'active' => 'subject',
+            'levels' => $levels,
+            'majors' => $majors,
         ]);
     }
 
@@ -41,9 +50,23 @@ class SubjectController extends Controller
         $validatedData = $request->validate([
             'subject_name' => 'required|string|max:255',
             'subject_abb' => 'required|string|max:10',
+            'levels' => 'required|array',
+            'levels.*' => 'exists:levels,id',
+            'majors' => 'nullable|array',
+            'majors.*' => 'exists:majors,id',
         ]);
+    
+        // Buat Subject baru dan pastikan disimpan terlebih dahulu
+        $subject = Subject::create([
+            'subject_name' => $validatedData['subject_name'],
+            'subject_abb' => $validatedData['subject_abb'],
+        ]);
+        
+        $subjectId = $subject->id;
+        $levelsJson = json_encode($validatedData['levels']);
+        $majorsJson = json_encode($validatedData['majors'] ?? []);
 
-        Subject::create($validatedData);
+        DB::statement('CALL InsertSubjectLevel(?, ?, ?)', [$subjectId, $levelsJson, $majorsJson]);
 
         return redirect()->route('subjects.index')->with('success', 'Subject successfully created.');
     }
@@ -61,10 +84,17 @@ class SubjectController extends Controller
      */
     public function edit(Subject $subject)
     {
+        $levels = Level::all(); // Semua level (SMP, SMA, SMK)
+        $majors = Major::all();
+        $subjectLevels = $subject->levels()->pluck('subject_levels.level_id')->toArray();
+
         return view('subject.edit', [
             'page' => 'Edit Subject',
             'active' => 'subject',
-            'subject' => $subject
+            'subject' => $subject,
+            'levels' => $levels,
+            'majors' => $majors,
+            'subjectLevels' => $subjectLevels,
         ]);
     }
 
@@ -76,12 +106,31 @@ class SubjectController extends Controller
         $validatedData = $request->validate([
             'subject_name' => 'required|string|max:255',
             'subject_abb' => 'required|string|max:50',
+            'levels' => 'nullable|array',
+            'levels.*' => 'exists:levels,id',
+            'majors' => 'nullable|array',
+            'majors.*' => 'exists:majors,id',
         ]);
+
+        // Update Subject
+        $subject->subject_name = $validatedData['subject_name'];
+        $subject->subject_abb = $validatedData['subject_abb'];
+        $subject->save();
     
-        $subject->update($validatedData);
-    
-        return redirect()->route('subjects.index')->with('success', 'Subject successfully updated.');
-    }
+// Contoh untuk levels
+$levelsJson = json_encode($validatedData['levels']); // Mengubah array levels menjadi JSON
+$majorsJson = json_encode($validatedData['majors']); // Mengubah array majors menjadi JSON
+
+// Panggil stored procedure untuk update
+DB::statement('CALL UpdateSubjectLevelAndMajor(?, ?, ?)', [
+    $subject->id,
+    $levelsJson,
+    $majorsJson
+]);
+return redirect()->route('subjects.index')->with('success', 'Subject updated successfully');
+
+}
+
 
     /**
      * Remove the specified resource from storage.
