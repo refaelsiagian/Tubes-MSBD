@@ -12,16 +12,16 @@ return new class extends Migration
     public function up(): void
     {
         DB::statement("
-            CREATE VIEW `class_advisors_view` AS
+            CREATE VIEW class_advisors_view AS
             SELECT 
-                `erautama`.`rooms`.`id` AS `room_id`,
-                `erautama`.`employee_jobs`.`id` AS `employee_job_id`
+                r.id AS room_id,
+                ej.id AS employee_job_id
             FROM 
-                `erautama`.`rooms`
+                rooms r
             LEFT JOIN 
-                `erautama`.`employee_jobs`
+                employee_jobs ej
             ON 
-                `erautama`.`rooms`.`id` = `erautama`.`employee_jobs`.`room_id`;
+                r.id = ej.room_id;
         ");
 
     }

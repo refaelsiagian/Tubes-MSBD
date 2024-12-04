@@ -565,6 +565,9 @@ class ScheduleSeeder extends Seeder
         ['id' => 508, 'subject_level_id' => 38, 'lesson_id' => 131, 'teacher_id' => 32, 'room_id' => 10, 'semester_id' => 1],
         ['id' => 509, 'subject_level_id' => 38, 'lesson_id' => 132, 'teacher_id' => 32, 'room_id' => 10, 'semester_id' => 1],
         ['id' => 510, 'subject_level_id' => null, 'lesson_id' => 133, 'teacher_id' => null, 'room_id' => 10, 'semester_id' => 1],
+    ]);
+
+    DB::table('schedules')->insert([    
         ['id' => 511, 'subject_level_id' => 38, 'lesson_id' => 134, 'teacher_id' => 32, 'room_id' => 10, 'semester_id' => 1],
         ['id' => 512, 'subject_level_id' => 38, 'lesson_id' => 135, 'teacher_id' => 32, 'room_id' => 10, 'semester_id' => 1],
         ['id' => 513, 'subject_level_id' => 39, 'lesson_id' => 136, 'teacher_id' => 16, 'room_id' => 10, 'semester_id' => 1],
@@ -578,6 +581,9 @@ class ScheduleSeeder extends Seeder
         ['id' => 521, 'subject_level_id' => 42, 'lesson_id' => 144, 'teacher_id' => 36, 'room_id' => 10, 'semester_id' => 1],
         ['id' => 522, 'subject_level_id' => null, 'lesson_id' => 145, 'teacher_id' => null, 'room_id' => 10, 'semester_id' => 1],
         ['id' => 523, 'subject_level_id' => null, 'lesson_id' => 146, 'teacher_id' => null, 'room_id' => 10, 'semester_id' => 1],
+    ]);
+
+    DB::table('schedules')->insert([
         ['id' => 524, 'subject_level_id' => 43, 'lesson_id' => 147, 'teacher_id' => 6, 'room_id' => 10, 'semester_id' => 1],
         ['id' => 525, 'subject_level_id' => 43, 'lesson_id' => 148, 'teacher_id' => 6, 'room_id' => 10, 'semester_id' => 1],
         ['id' => 526, 'subject_level_id' => 43, 'lesson_id' => 149, 'teacher_id' => 6, 'room_id' => 10, 'semester_id' => 1],
@@ -588,7 +594,7 @@ class ScheduleSeeder extends Seeder
         ['id' => 531, 'subject_level_id' => 40, 'lesson_id' => 154, 'teacher_id' => 33, 'room_id' => 10, 'semester_id' => 1],
         ['id' => 532, 'subject_level_id' => 44, 'lesson_id' => 155, 'teacher_id' => 14, 'room_id' => 10, 'semester_id' => 1],
         ['id' => 533, 'subject_level_id' => null, 'lesson_id' => 156, 'teacher_id' => null, 'room_id' => 10, 'semester_id' => 1],
-        ['id' => 534, 'subject_level_id' => 144, 'lesson_id' => 157, 'teacher_id' => 14, 'room_id' => 10, 'semester_id' => 1],
+        ['id' => 534, 'subject_level_id' => 44, 'lesson_id' => 157, 'teacher_id' => 14, 'room_id' => 10, 'semester_id' => 1],
         ['id' => 535, 'subject_level_id' => 40, 'lesson_id' => 158, 'teacher_id' => 51, 'room_id' => 10, 'semester_id' => 1],
         ['id' => 536, 'subject_level_id' => null, 'lesson_id' => 159, 'teacher_id' => null, 'room_id' => 10, 'semester_id' => 1],
         ['id' => 537, 'subject_level_id' => null, 'lesson_id' => 160, 'teacher_id' => null, 'room_id' => 10, 'semester_id' => 1],
