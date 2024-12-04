@@ -66,7 +66,7 @@ class SubjectController extends Controller
         $levelsJson = json_encode($validatedData['levels']);
         $majorsJson = json_encode($validatedData['majors'] ?? []);
 
-        DB::statement('CALL InsertSubjectLevel(?, ?, ?)', [$subjectId, $levelsJson, $majorsJson]);
+        DB::statement('CALL insert_subject_levels_procedure(?, ?, ?)', [$levelsJson, $majorsJson, $subjectId]);
 
         return redirect()->route('subjects.index')->with('success', 'Subject successfully created.');
     }
