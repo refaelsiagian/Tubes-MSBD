@@ -588,7 +588,7 @@ class ScheduleSeeder extends Seeder
         ['id' => 531, 'subject_level_id' => 40, 'lesson_id' => 154, 'teacher_id' => 33, 'room_id' => 10, 'semester_id' => 1],
         ['id' => 532, 'subject_level_id' => 44, 'lesson_id' => 155, 'teacher_id' => 14, 'room_id' => 10, 'semester_id' => 1],
         ['id' => 533, 'subject_level_id' => null, 'lesson_id' => 156, 'teacher_id' => null, 'room_id' => 10, 'semester_id' => 1],
-        ['id' => 534, 'subject_level_id' => 144, 'lesson_id' => 157, 'teacher_id' => 14, 'room_id' => 10, 'semester_id' => 1],
+        ['id' => 534, 'subject_level_id' => 44, 'lesson_id' => 157, 'teacher_id' => 14, 'room_id' => 10, 'semester_id' => 1],
         ['id' => 535, 'subject_level_id' => 40, 'lesson_id' => 158, 'teacher_id' => 51, 'room_id' => 10, 'semester_id' => 1],
         ['id' => 536, 'subject_level_id' => null, 'lesson_id' => 159, 'teacher_id' => null, 'room_id' => 10, 'semester_id' => 1],
         ['id' => 537, 'subject_level_id' => null, 'lesson_id' => 160, 'teacher_id' => null, 'room_id' => 10, 'semester_id' => 1],

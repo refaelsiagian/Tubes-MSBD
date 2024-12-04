@@ -137,8 +137,11 @@ return redirect()->route('subjects.index')->with('success', 'Subject updated suc
      */
     public function destroy(Subject $subject)
     {
+        $count = $subject->subjectLevel->flatMap(function ($subjectLevel) {
+            return $subjectLevel->schedule;
+        })->count();
 
-        if ($subject->schedules()->count() > 0) {
+        if ($count > 0) {
             return redirect()->route('subjects.index')->with('error', 'Cannot delete subject because it is still used in schedule.');
         }
 

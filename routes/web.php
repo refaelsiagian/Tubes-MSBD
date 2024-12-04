@@ -9,6 +9,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ScheduleController;    
 use App\Http\Controllers\SalaryController;
+use App\Http\Controllers\ClassAdvisorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,6 +51,9 @@ Route::middleware('auth')->group(function () {
         Route::get('/schedules/{room}', [ScheduleController::class, 'show'])->name('schedules.show');
         Route::get('/schedules/edit/{schedule}', [ScheduleController::class, 'edit'])->name('schedules.edit');
         Route::put('/schedules/update/{schedule}', [ScheduleController::class, 'update'])->name('schedules.update');
+
+        Route::get('/class-advisors', [ClassAdvisorController::class, 'index'])->name('class-advisors.index');
+        Route::put('/class-advisors/update/{room}', [ClassAdvisorController::class, 'update'])->name('class-advisors.update');
     
         Route::get('/salary', [SalaryController::class, 'index'])->name('salary.index');
     });

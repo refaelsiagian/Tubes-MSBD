@@ -17,11 +17,6 @@ class Subject extends Model
         return $this->hasMany(SubjectLevel::class);
     }
 
-    public function schedules()
-    {
-        return $this->hasMany(Schedule::class, 'subject_level_id');
-    }
-
     public function levels()
     {
         return $this->belongsToMany(Level::class, 'subject_levels', 'subject_id', 'level_id', 'major_id');
