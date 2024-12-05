@@ -10,6 +10,8 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ScheduleController;    
 use App\Http\Controllers\SalaryController;
 use App\Http\Controllers\ClassAdvisorController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,7 +39,10 @@ Route::middleware('auth')->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'foundation'])->name('dashboard.foundation');
     
         Route::resource('/jobs', JobController::class)->except('show');
+
         Route::resource('/employees', EmployeeController::class)->except('show');
+
+        Route::get('/payments', [PaymentController::class, 'index'])->name('payments.index');
     
     });
     
@@ -56,34 +61,44 @@ Route::middleware('auth')->group(function () {
         Route::put('/class-advisors/update/{room}', [ClassAdvisorController::class, 'update'])->name('class-advisors.update');
     
         Route::get('/salary', [SalaryController::class, 'index'])->name('salary.index');
-    });
 
+        Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
+    });
+    
     Route::prefix('principal')->middleware('role:principal')->group(function () {
-    
+        
         Route::get('/dashboard', [DashboardController::class, 'principal'])->name('dashboard.principal');
-
+        
         Route::get('/salary', [SalaryController::class, 'index'])->name('salary.index');
-    });
 
+        Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
+    });
+    
     Route::prefix('teacher')->middleware('role:teacher')->group(function () {
-    
+        
         Route::get('/dashboard', [DashboardController::class, 'teacher'])->name('dashboard.teacher');
-
+        
         Route::get('/salary', [SalaryController::class, 'index'])->name('salary.index');
-    });
 
+        Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
+    });
+    
     Route::prefix('inspector')->middleware('role:inspector')->group(function () {
-    
+        
         Route::get('/dashboard', [DashboardController::class, 'inspector'])->name('dashboard.inspector');
-
+        
         Route::get('/salary', [SalaryController::class, 'index'])->name('salary.index');
+
+        Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
     });
-
-    Route::prefix('employee')->middleware('role:employee')->group(function () {
     
+    Route::prefix('employee')->middleware('role:employee')->group(function () {
+        
         Route::get('/dashboard', [DashboardController::class, 'employee'])->name('dashboard.employee');
-
+        
         Route::get('/salary', [SalaryController::class, 'index'])->name('salary.index');
+        
+        Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
     });
 
 });

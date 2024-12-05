@@ -6,6 +6,12 @@
     <h1 class="h2">Schedules</h1>
 </div>
 
+@if(session('success'))
+    <div class="alert alert-success col-lg-8">
+        {{ session('success') }}
+    </div>
+@endif
+
 <div class="container mt-3 mb-5">
     <div class="row g-3">
         @foreach ($classAdvisors as $advisor)

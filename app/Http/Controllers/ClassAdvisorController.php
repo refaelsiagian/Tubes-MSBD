@@ -60,6 +60,6 @@ class ClassAdvisorController extends Controller
         // Ambil pesan dari hasil stored procedure
         $status = $result[0]->status ?? 'Unknown status';
     
-        return redirect()->route('class-advisor.index')->with('success', $status);
+        return redirect()->route('class-advisors.index')->with('success', $status);
     }
 }
