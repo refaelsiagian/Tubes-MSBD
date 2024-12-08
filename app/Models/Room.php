@@ -31,6 +31,11 @@ class Room extends Model
         return $this->belongsTo(Level::class);
     }
 
+    public function classAdvisor()
+    {
+        return $this->hasOne(ClassAdvisor::class);
+    }
+
     public function getClassNameAttribute()
     {
         // Ambil nama level
