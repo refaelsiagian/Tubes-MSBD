@@ -26,6 +26,11 @@ class Schedule extends Model
         return $this->belongsTo(EmployeeJob::class);
     }
 
+    public function teacher2()
+    {
+        return $this->belongsTo(EmployeeJob::class, 'teacher2_id');
+    }
+
     public function room()
     {
         return $this->belongsTo(Room::class);
