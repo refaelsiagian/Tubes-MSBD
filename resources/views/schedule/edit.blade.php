@@ -60,12 +60,47 @@
                     @endforeach
                 </select>
             </div>
+            <div class="mb-3">
+                <label for="teacher" class="form-label">Teacher 2</label>
+                <select class="form-select" name="teacher2_id" id="teacher2">
+                    <option value="" {{ is_null($schedule->teacher2_id) ? 'selected' : '' }}>-- No Teacher --</option>
+                    @foreach ($teachers as $teacher)
+                        @if ($teacher->id == $schedule->teacher2_id)
+                            <option value="{{ $teacher->id }}" selected>{{ $teacher->employee->employee_name }}</option>
+                        @else
+                            <option value="{{ $teacher->id }}">{{ $teacher->employee->employee_name }}</option>
+                        @endif
+                    @endforeach
+                </select>
+            </div>
     
             <!-- Tombol Submit -->
             <button type="submit" class="btn btn-primary">Edit</button>
         </form>
     </div>
-    
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const subjectSelect = document.getElementById('subject');
+        const teacher2Select = document.getElementById('teacher2');
+        
+        // Fungsi untuk mengecek pilihan subject
+        function toggleTeacher2() {
+            // Cek apakah pilihan di subject adalah 'Agama'
+            if (subjectSelect.options[subjectSelect.selectedIndex].text === 'Agama') {
+                teacher2Select.closest('.mb-3').style.display = 'block'; // Tampilkan teacher2
+            } else {
+                teacher2Select.closest('.mb-3').style.display = 'none'; // Sembunyikan teacher2
+            }
+        }
+
+        // Panggil fungsi saat halaman pertama kali dimuat
+        toggleTeacher2();
+
+        // Tambahkan event listener untuk mendeteksi perubahan pilihan di subject
+        subjectSelect.addEventListener('change', toggleTeacher2);
+    });
+</script>
 
 @endsection

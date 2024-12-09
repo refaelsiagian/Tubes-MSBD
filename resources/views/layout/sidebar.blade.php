@@ -39,21 +39,21 @@
             </a>
           </li>
           @endcan
-          @can('role', 'admin')
+          @can('role', collect(['foundation', 'admin', 'teacher']))
           <li class="nav-item">
-            <a class="nav-link d-flex align-items-center gap-2" href="{{ route('subjects.index') }}">
+            <a class="nav-link d-flex align-items-center gap-2" href="{{ url('/'.$role.'/subjects') }}">
               <svg class="bi"><use xlink:href="#cart"/></svg>
               Subjects
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link d-flex align-items-center gap-2" href="{{ route('schedules.index') }}">
+            <a class="nav-link d-flex align-items-center gap-2" href="{{ url('/'.$role.'/schedules') }}">
               <svg class="bi"><use xlink:href="#cart"/></svg>
               Schedule
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link d-flex align-items-center gap-2" href="{{ route('class-advisors.index') }}">
+            <a class="nav-link d-flex align-items-center gap-2" href="{{ url('/'.$role.'/class-advisors') }}">
               <svg class="bi"><use xlink:href="#cart"/></svg>
               Class Advisor
             </a>

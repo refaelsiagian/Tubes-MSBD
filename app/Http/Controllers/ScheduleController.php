@@ -29,20 +29,13 @@ class ScheduleController extends Controller
                     'room', 
                     'subjectLevel.subject', 
                     'lesson.lessonType', 
-                    'teacher.employee', 
-                    'semester', 
+                    'teacher.employee',
+                    'teacher2.employee', 
                     'scheduleTimes'])
                         ->filterSchedules($room->id, $day) 
                         ->orderBy('lesson_id', 'asc')
                         ->get()
-                        ->groupBy(function ($schedule) {
-                            return $schedule->scheduleTimes->first()?->start_time . '|' . 
-                                   $schedule->scheduleTimes->first()?->end_time . '|' . 
-                                   $schedule->lesson_id;
-                        });
         ;
-
-        // dd($schedules->toJson()); 
 
         $className = $room->class_name;
 
@@ -80,12 +73,19 @@ class ScheduleController extends Controller
     public function update(Request $request, Schedule $schedule)
     {
         $validatedData = $request->validate([
-            'subject_level_id' => 'required',
-            'teacher_id' => 'required',
+            'subject_level_id' => 'required|exists:subject_levels,id',
+            'teacher_id' => 'required|exists:employee_jobs,id',
+            'teacher2_id' => 'nullable|exists:employee_jobs,id',
             'day' => 'required',
         ]);
 
+        // dd($validatedData);
+
         $day = strtolower($validatedData['day']);
+
+        $subject = SubjectLevel::find($validatedData['subject_level_id'])->subject->subject_name;
+        
+        $validatedData['teacher2_id'] = $subject == 'Agama' ? $validatedData['teacher2_id'] : NULL;
 
         unset($validatedData['day']);
 
