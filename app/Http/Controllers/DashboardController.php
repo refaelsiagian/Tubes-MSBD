@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Crypt;
 class DashboardController extends Controller
 {
     // Function utama untuk menampilkan dashboard sesuai role
-    public function index($role)
+    public function index()
     {
         $user = Auth::user();
 

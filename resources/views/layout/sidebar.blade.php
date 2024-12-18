@@ -13,12 +13,6 @@
               Dashboard
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page" href="{{ route('profile.index') }}">
-              <svg class="bi"><use xlink:href="#house-add"/></svg>
-              Profile
-            </a>
-          </li>
           @can('role', collect(['teacher', 'principal', 'admin']))
           <li class="nav-item">
             <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page" href="{{ route('teaching-schedules.index') }}">

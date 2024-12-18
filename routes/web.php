@@ -10,7 +10,6 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ScheduleController;    
 use App\Http\Controllers\SalaryController;
 use App\Http\Controllers\ClassAdvisorController;
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PresenceController;
 use App\Http\Controllers\TeachingScheduleController;
@@ -78,7 +77,7 @@ Route::middleware('auth')->group(function () {
             Route::get('/payments', [PaymentController::class, 'index'])->name('payments.index');
             Route::get('/payment/{id}', [PaymentController::class, 'show'])->name('payments.show');
             Route::post('/payment/{id}', [PaymentController::class, 'uploadTransfer'])->name('payments.uploadTransfer');
-            
+
             Route::get('/others', [OtherController::class, 'index'])->name('others.index');
             Route::put('/others/admin', [OtherController::class, 'admin'])->name('others.admin');
             Route::put('/others/principal', [OtherController::class, 'principal'])->name('others.principal');
