@@ -19,7 +19,6 @@ class DatabaseSeeder extends Seeder
             LevelSeeder::class,
             SubjectSeeder::class,
             LessonTypeSeeder::class,
-            SemesterSeeder::class,
             JobSeeder::class,
             EmployeeSeeder::class,
             MajorSeeder::class,
