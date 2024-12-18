@@ -73,6 +73,7 @@ Route::middleware('auth')->group(function () {
             Route::resource('/jobs', JobController::class)->except('show');
 
             Route::resource('/employees', EmployeeController::class)->except('show');
+            Route::put('/employees/job/{employee}', [EmployeeController::class, 'job'])->name('employees.job');
 
             Route::get('/payments', [PaymentController::class, 'index'])->name('payments.index');
             Route::get('/payment/{id}', [PaymentController::class, 'show'])->name('payments.show');

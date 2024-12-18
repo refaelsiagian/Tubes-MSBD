@@ -51,4 +51,18 @@ class Employee extends Model
     {
         return $this->hasMany(PaymentHistory::class);
     }
+
+    public function jobsExcludingSpecificIds()
+    {
+        return $this->hasMany(EmployeeJob::class, 'employee_id', 'id')
+                    ->whereNotIn('job_id', [1, 2, 3, 4]);
+    }
+
+    public function scopeRealJobs($query)
+    {
+        return $query->whereHas('jobsExcludingSpecificIds');
+    }
+
+
+
 }

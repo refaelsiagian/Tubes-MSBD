@@ -22,6 +22,7 @@
             </h2>
             <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                 <div class="accordion-body">
+                    <p class="text-muted">Admin dipilih berdasarkan pekerja yang ditetapkan sebagai guru</p>
                     <h6>{{ $admin->employee->employee_name }}</h6>
                     <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modal-admin">
                         Edit
@@ -37,6 +38,7 @@
             </h2>
             <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                 <div class="accordion-body">
+                    <p class="text-muted">Kepala sekolah dipilih berdasarkan pekerja yang ditetapkan sebagai guru</p>
                     <table class="table table-bordered">
                         <thead>
                             <tr>
