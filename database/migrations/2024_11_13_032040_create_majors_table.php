@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('major_name');
             $table->string('major_abb');
-            $table->timestamps();
         });
     }
 

@@ -19,7 +19,6 @@ class DatabaseSeeder extends Seeder
             LevelSeeder::class,
             SubjectSeeder::class,
             LessonTypeSeeder::class,
-            SemesterSeeder::class,
             JobSeeder::class,
             EmployeeSeeder::class,
             MajorSeeder::class,
@@ -27,7 +26,6 @@ class DatabaseSeeder extends Seeder
             RoomSeeder::class,
             UserSeeder::class,
             EmployeeJobSeeder::class,
-            ClassTeacherSeeder::class,
             SubjectLevelSeeder::class,
             ScheduleSeeder::class
         ]);

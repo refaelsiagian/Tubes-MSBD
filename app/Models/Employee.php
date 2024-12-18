@@ -36,5 +36,15 @@ class Employee extends Model
     {
         return $this->belongsToMany(Job::class, 'employee_jobs', 'employee_id', 'job_id');
     }
+
+    public function presence()
+    {
+        return $this->hasMany(Presence::class);
+    }
+
+    public function penalty()
+    {
+        return $this->hasMany(Penalty::class);
+    }
     
 }

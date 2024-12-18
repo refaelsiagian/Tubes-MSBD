@@ -50,7 +50,9 @@
                         {{ $schedule->teacher->employee->employee_name }}
                         @if($schedule->teacher2) / {{ $schedule->teacher2->employee->employee_name }} @endif
                     </td>
+                    @if(auth()->user()->role->role === 'admin')
                     <td><a href="{{ route('schedules.edit', $schedule->id) }}" class="btn btn-sm btn-outline-success">Edit</a></td>
+                    @endif
                 @endif
 
             </tr>

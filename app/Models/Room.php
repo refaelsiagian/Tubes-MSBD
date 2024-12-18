@@ -36,6 +36,11 @@ class Room extends Model
         return $this->hasOne(ClassAdvisor::class);
     }
 
+    public function teacherAllLessons()
+    {
+        return $this->hasMany(TeacherAllLessons::class);
+    }
+
     public function getClassNameAttribute()
     {
         // Ambil nama level

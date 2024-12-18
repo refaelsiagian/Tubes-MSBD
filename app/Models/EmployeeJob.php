@@ -50,4 +50,9 @@ class EmployeeJob extends Model
     {
         return $this->hasMany(ClassAdvisor::class);
     }
+
+    public function teacherLessons()
+    {
+        return $this->hasMany(TeacherAllLessons::class);
+    }
 }

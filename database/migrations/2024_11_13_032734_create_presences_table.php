@@ -14,8 +14,7 @@ return new class extends Migration
         Schema::create('presences', function (Blueprint $table) {
             $table->id(); // Primary key
             $table->string('employee_id'); // Foreign key to employee table
-            $table->boolean('present'); // Presence status, true or false
-            $table->date('date'); // Date of presence record
+            $table->enum('status', ['hadir', 'terlambat', 'absen']); // Presence status, true or false
             $table->timestamps(); // Created_at and updated_at timestamps
 
             // Foreign key constraint (assuming employee_id is a string)
