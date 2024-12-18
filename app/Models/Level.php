@@ -10,7 +10,10 @@ class Level extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
-    protected $fillable = ['level_name'];
+    protected $fillable = [
+        'level_name',
+        'rates_per_lesson'];
+        public $timestamps = false;
 
     public function lesson()
     {
