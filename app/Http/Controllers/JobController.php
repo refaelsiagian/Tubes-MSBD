@@ -72,9 +72,16 @@ class JobController extends Controller
      */
     public function update(Request $request, Job $job)
     {
-        //
+        $validated = $request->validate([
+            'job_name' => 'required|string|max:255',
+            'salary' => 'required|numeric',
+        ]);
+    
+        $job->update($validated);
+    
+        return redirect()->route('jobs.index')->with('success', 'Job updated successfully.');
+    
     }
-
     /**
      * Remove the specified resource from storage.
      */
