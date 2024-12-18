@@ -5,21 +5,31 @@
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#sidebarMenu" aria-label="Close"></button>
       </div>
 
-      @php
-        $role = auth()->user()->role->role;
-      @endphp
-
       <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
         <ul class="nav flex-column">
           <li class="nav-item">
-            <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page" href="{{ url('/'.$role.'/dashboard')}}">
+            <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page" href="{{ route('dashboard.index') }}">
               <svg class="bi"><use xlink:href="#house-add"/></svg>
               Dashboard
             </a>
           </li>
+          @can('role', collect(['teacher', 'principal', 'admin']))
+          <li class="nav-item">
+            <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page" href="{{ route('teaching-schedules.index') }}">
+              <svg class="bi"><use xlink:href="#house-add"/></svg>
+              Teaching Schedule
+            </a>
+          </li>
+          @endcan
           @can('role', collect(['teacher', 'employee', 'principal', 'inspector','admin']))
           <li class="nav-item">
-            <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page" href="{{ url('/'.$role.'/salary')}}">
+            <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page" href="{{ route('presences.index') }}">
+              <svg class="bi"><use xlink:href="#house-add"/></svg>
+              Presence
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page" href="{{ route('salary.index') }}">
               <svg class="bi"><use xlink:href="#house-add"/></svg>
               Salary
             </a>
@@ -38,22 +48,28 @@
               Employees
             </a>
           </li>
-          @endcan
-          @can('role', collect(['foundation', 'admin', 'teacher']))
           <li class="nav-item">
-            <a class="nav-link d-flex align-items-center gap-2" href="{{ url('/'.$role.'/subjects') }}">
+            <a class="nav-link d-flex align-items-center gap-2" href=" {{ route('others.index') }} ">
+              <svg class="bi"><use xlink:href="#people"/></svg>
+              Others
+            </a>
+          </li>
+          @endcan
+          @can('role', collect(['foundation', 'admin', 'principal']))
+          <li class="nav-item">
+            <a class="nav-link d-flex align-items-center gap-2" href="{{ route('subjects.index') }}">
               <svg class="bi"><use xlink:href="#cart"/></svg>
               Subjects
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link d-flex align-items-center gap-2" href="{{ url('/'.$role.'/schedules') }}">
+            <a class="nav-link d-flex align-items-center gap-2" href="{{ route('schedules.index') }}">
               <svg class="bi"><use xlink:href="#cart"/></svg>
               Schedule
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link d-flex align-items-center gap-2" href="{{ url('/'.$role.'/class-advisors') }}">
+            <a class="nav-link d-flex align-items-center gap-2" href="{{ route('class-advisors.index') }}">
               <svg class="bi"><use xlink:href="#cart"/></svg>
               Class Advisor
             </a>

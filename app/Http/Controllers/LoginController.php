@@ -27,24 +27,7 @@ class LoginController extends Controller
         ])) {
             $request->session()->regenerate();
 
-            $role = Auth::user()->role->role;
-
-            switch ($role) {
-                case 'admin':
-                    return redirect()->intended('/admin/dashboard');
-                case 'teacher':
-                    return redirect()->intended('/teacher/dashboard');
-                case 'employee':
-                    return redirect()->intended('/employee/dashboard');
-                case 'principal':
-                    return redirect()->intended('/principal/dashboard');
-                case 'foundation':
-                    return redirect()->intended('/foundation/dashboard');
-                case 'inspector':
-                    return redirect()->intended('/inspector/dashboard');
-                default:
-                    abort(403, 'Role not recognized.');
-            }
+            return redirect()->route('dashboard.index');
         }
 
         return back()->with('loginError', 'Password is incorrect!');

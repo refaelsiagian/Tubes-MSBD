@@ -10,8 +10,10 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ScheduleController;    
 use App\Http\Controllers\SalaryController;
 use App\Http\Controllers\ClassAdvisorController;
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\PresenceController;
+use App\Http\Controllers\TeachingScheduleController;
+use App\Http\Controllers\OtherController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,78 +35,53 @@ Route::middleware('guest')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
-    
-    Route::prefix('foundation')->middleware('role:foundation')->group(function () {
 
-        Route::get('/dashboard', [DashboardController::class, 'foundation'])->name('dashboard.foundation.index');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
 
-        Route::get('/schedules', [ScheduleController::class, 'index'])->name('schedules.foundation.index');
-        Route::get('/schedules/{room}', [ScheduleController::class, 'show'])->name('schedules.foundation.show');
-    
-        Route::resource('/jobs', JobController::class)->except('show');
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
 
-        Route::resource('/employees', EmployeeController::class)->except('show');
+    Route::middleware('role:principal,teacher,inspector,employee,admin')->group(function () {
 
-        Route::get('/payments', [PaymentController::class, 'index'])->name('payments.index');
-        Route::get('/payment/{id}', [PaymentController::class, 'show'])->name('payments.show');
-        Route::post('/payment/{id}', [PaymentController::class, 'uploadTransfer'])->name('payments.uploadTransfer');
-    
+        Route::get('/presences', [PresenceController::class, 'index'])->name('presences.index');
+        Route::post('/presences', [PresenceController::class, 'store'])->name('presences.store');
+                
+        Route::get('/salary', [SalaryController::class, 'index'])->name('salary.index');
+
+        Route::middleware('role:principal,teacher,admin')->group(function () {
+            Route::get('/teaching-schedules', [TeachingScheduleController::class, 'index'])->name('teaching-schedules.index');
+        });
     });
     
-    Route::prefix('admin')->middleware('role:admin')->group(function () {
-    
-        Route::get('/dashboard', [DashboardController::class, 'admin'])->name('dashboard.admin.index');
-
-        Route::resource('/subjects', SubjectController::class)->except('show');
+    Route::middleware('role:foundation,admin')->group(function () {
 
         Route::get('/schedules', [ScheduleController::class, 'index'])->name('schedules.index');
         Route::get('/schedules/{room}', [ScheduleController::class, 'show'])->name('schedules.show');
-        Route::get('/schedules/edit/{schedule}', [ScheduleController::class, 'edit'])->name('schedules.edit');
-        Route::put('/schedules/update/{schedule}', [ScheduleController::class, 'update'])->name('schedules.update');
 
         Route::get('/class-advisors', [ClassAdvisorController::class, 'index'])->name('class-advisors.index');
-        Route::put('/class-advisors/update/{room}', [ClassAdvisorController::class, 'update'])->name('class-advisors.update');
-    
-        Route::get('/salary', [SalaryController::class, 'index'])->name('salary.admin.index');
 
-        Route::get('/profile', [ProfileController::class, 'index'])->name('profile.admin.index');
-    });
-    
-    Route::prefix('principal')->middleware('role:principal')->group(function () {
-        
-        Route::get('/dashboard', [DashboardController::class, 'principal'])->name('dashboard.principal.index');
-        
-        Route::get('/salary', [SalaryController::class, 'index'])->name('salary.principal.index');
+        Route::middleware('role:admin')->group(function () {
+            
+            Route::get('/schedules/edit/{schedule}', [ScheduleController::class, 'edit'])->name('schedules.edit');
+            Route::put('/schedules/update/{schedule}', [ScheduleController::class, 'update'])->name('schedules.update');
+            
+            Route::put('/class-advisors/update/{room}', [ClassAdvisorController::class, 'update'])->name('class-advisors.update');
 
-        Route::get('/profile', [ProfileController::class, 'index'])->name('profile.principal.index');
-    });
-    
-    Route::prefix('teacher')->middleware('role:teacher')->group(function () {
-        
-        Route::get('/dashboard', [DashboardController::class, 'teacher'])->name('dashboard.teacher.index');
-        
-        Route::get('/salary', [SalaryController::class, 'index'])->name('salary.teacher.index');
+            Route::resource('/subjects', SubjectController::class)->except('show');
+        });
 
-        Route::get('/profile', [ProfileController::class, 'index'])->name('profile.teacher.index');
-    });
-    
-    Route::prefix('inspector')->middleware('role:inspector')->group(function () {
-        
-        Route::get('/dashboard', [DashboardController::class, 'inspector'])->name('dashboard.inspector.index');
-        
-        Route::get('/salary', [SalaryController::class, 'index'])->name('salary.inspector.index');
+        Route::middleware('role:foundation')->group(function () {
+            Route::resource('/jobs', JobController::class)->except('show');
 
-        Route::get('/profile', [ProfileController::class, 'index'])->name('profile.inspector.index');
-    });
-    
-    Route::prefix('employee')->middleware('role:employee')->group(function () {
-        
-        Route::get('/dashboard', [DashboardController::class, 'employee'])->name('dashboard.employee.index');
-        
-        Route::get('/salary', [SalaryController::class, 'index'])->name('salary.employee.index');
-        
-        Route::get('/profile', [ProfileController::class, 'index'])->name('profile.employee.index');
-    });
+            Route::resource('/employees', EmployeeController::class)->except('show');
 
+            Route::get('/payments', [PaymentController::class, 'index'])->name('payments.index');
+            Route::get('/payment/{id}', [PaymentController::class, 'show'])->name('payments.show');
+            Route::post('/payment/{id}', [PaymentController::class, 'uploadTransfer'])->name('payments.uploadTransfer');
+
+            Route::get('/others', [OtherController::class, 'index'])->name('others.index');
+            Route::put('/others/admin', [OtherController::class, 'admin'])->name('others.admin');
+            Route::put('/others/principal', [OtherController::class, 'principal'])->name('others.principal');
+        });
+    });
 });
 

@@ -14,17 +14,23 @@ return new class extends Migration
         DB::statement("
             CREATE VIEW lesson_count_view AS
             SELECT 
-                s.teacher_id AS employee_job_id,
-                sl.id AS subject_level_id,
-                COUNT(s.lesson_id) AS lesson_count
-            FROM 
-                schedules s
-            JOIN 
-                subject_levels sl ON s.subject_level_id = sl.id
-            WHERE 
-                s.teacher_id IS NOT NULL -- Hanya menghitung lesson yang memiliki teacher
-            GROUP BY 
-                s.teacher_id, sl.id;
+                teacher_lesson.teacher_id AS employee_job_id,
+                teacher_lesson.subject_level_id,
+                COUNT(teacher_lesson.lesson_id) AS lesson_count
+            FROM (
+                SELECT 
+                    teacher_id, subject_level_id, lesson_id
+                FROM schedules
+                WHERE teacher_id IS NOT NULL
+                
+                UNION ALL
+                
+                SELECT 
+                    teacher2_id AS teacher_id, subject_level_id, lesson_id
+                FROM schedules
+                WHERE teacher2_id IS NOT NULL
+            ) AS teacher_lesson
+            GROUP BY teacher_lesson.teacher_id, teacher_lesson.subject_level_id;
         ");
     }
 

@@ -35,4 +35,9 @@ class Lesson extends Model
     {
         return $this->belongsTo(DayTime::class, 'day', 'day');
     }
+
+    public function teacherAllLessons()
+    {
+        return $this->hasMany(TeacherAllLessons::class);
+    }
 }

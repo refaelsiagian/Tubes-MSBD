@@ -26,7 +26,6 @@ class DatabaseSeeder extends Seeder
             RoomSeeder::class,
             UserSeeder::class,
             EmployeeJobSeeder::class,
-            ClassTeacherSeeder::class,
             SubjectLevelSeeder::class,
             ScheduleSeeder::class
         ]);

@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Crypt;
 class DashboardController extends Controller
 {
     // Function utama untuk menampilkan dashboard sesuai role
-    public function index($role)
+    public function index()
     {
         $user = Auth::user();
 
@@ -23,35 +23,5 @@ class DashboardController extends Controller
         }
     
         return view('dashboard.index', compact('loggedInEmployee', 'decryptedPhone'));
-    }
-
-    public function foundation()
-    {
-        return $this->index('foundation');
-    }
-
-    public function principal()
-    {
-        return $this->index('principal');
-    }
-
-    public function admin()
-    {
-        return $this->index('admin');
-    }
-
-    public function teacher()
-    {
-        return $this->index('teacher');
-    }
-
-    public function inspector()
-    {
-        return $this->index('inspector');
-    }
-
-    public function employee()
-    {
-        return $this->index('employee');
     }
 }
