@@ -114,19 +114,69 @@
             </div>
         </div>
         <div class="accordion-item">
-            <h2 class="accordion-header">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                <h5>Denda Guru</h5>
-                </button>
-            </h2>
-            <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-                </div>
-            </div>
+        <h2 class="accordion-header">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+            <h5>Denda Guru</h5>
+        </button>
+    </h2>
+    <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Nama Denda</th>
+                        <th>Harga Denda</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($fines as $fine)
+                        <tr>
+                            <td>{{ $fine->fine_name }}</td>
+                            <td>{{ number_format($fine->fine_price, 0, ',', '.') }}</td>
+                            <td>
+                                <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modal-fine-{{ $fine->id }}">
+                                    Edit
+                                </button>
+                                <!-- Modal untuk Edit Denda -->
+                                <div class="modal fade" id="modal-fine-{{ $fine->id }}" tabindex="-1" aria-labelledby="modal-fine-{{ $fine->id }}" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Denda "{{ $fine->fine_name }}"</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                            <form action="{{ route('others.fines') }}" method="post">
+                                                @csrf
+                                                @method('PUT')
+                                                <input type="hidden" name="fine_id" value="{{ $fine->id }}">
+                                                <div class="mb-3">
+                                                    <label for="fine_name-{{ $fine->id }}" class="form-label">Nama Denda</label>
+                                                    <input type="text" class="form-control" id="fine_name-{{ $fine->id }}" name="fine_name" value="{{ $fine->fine_name }}" required>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="fine_price-{{ $fine->id }}" class="form-label">Harga Denda</label>
+                                                    <input type="number" class="form-control" id="fine_price-{{ $fine->id }}" name="fine_price" value="{{ $fine->fine_price }}" required>
+                                                </div>
+                                                <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                                            </form>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
+
 
 @include('other.modal')
 
