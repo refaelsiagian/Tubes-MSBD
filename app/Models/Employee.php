@@ -47,4 +47,8 @@ class Employee extends Model
         return $this->hasMany(Penalty::class);
     }
     
+    public function paymentHistories()
+    {
+        return $this->hasMany(PaymentHistory::class);
+    }
 }

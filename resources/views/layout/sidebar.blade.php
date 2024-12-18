@@ -81,6 +81,14 @@
             </a>
           </li>
           @endcan
+          @can('role', 'foundation')
+          <li class="nav-item">
+            <a class="nav-link d-flex align-items-center gap-2" href=" {{ route('payments.index') }} ">
+              <svg class="bi"><use xlink:href="#people"/></svg>
+              Payment
+            </a>
+          </li>
+          @endcan
         </ul>
 
         <hr class="my-3">

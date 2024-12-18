@@ -76,7 +76,9 @@ Route::middleware('auth')->group(function () {
             Route::resource('/employees', EmployeeController::class)->except('show');
 
             Route::get('/payments', [PaymentController::class, 'index'])->name('payments.index');
-
+            Route::get('/payment/{id}', [PaymentController::class, 'show'])->name('payments.show');
+            Route::post('/payment/{id}', [PaymentController::class, 'uploadTransfer'])->name('payments.uploadTransfer');
+            
             Route::get('/others', [OtherController::class, 'index'])->name('others.index');
             Route::put('/others/admin', [OtherController::class, 'admin'])->name('others.admin');
             Route::put('/others/principal', [OtherController::class, 'principal'])->name('others.principal');
