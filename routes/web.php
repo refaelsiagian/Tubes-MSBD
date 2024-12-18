@@ -46,6 +46,8 @@ Route::middleware('auth')->group(function () {
         Route::resource('/employees', EmployeeController::class)->except('show');
 
         Route::get('/payments', [PaymentController::class, 'index'])->name('payments.index');
+        Route::get('/payment/{id}', [PaymentController::class, 'show'])->name('payments.show');
+        Route::post('/payment/{id}', [PaymentController::class, 'uploadTransfer'])->name('payments.uploadTransfer');
     
     });
     

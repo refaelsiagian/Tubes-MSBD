@@ -37,4 +37,8 @@ class Employee extends Model
         return $this->belongsToMany(Job::class, 'employee_jobs', 'employee_id', 'job_id');
     }
     
+    public function paymentHistories()
+    {
+        return $this->hasMany(PaymentHistory::class);
+    }
 }
