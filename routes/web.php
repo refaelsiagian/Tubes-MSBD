@@ -12,6 +12,7 @@ use App\Http\Controllers\SalaryController;
 use App\Http\Controllers\ClassAdvisorController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PresenceController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TeachingScheduleController;
 use App\Http\Controllers\OtherController;
 
@@ -81,6 +82,8 @@ Route::middleware('auth')->group(function () {
             Route::get('/others', [OtherController::class, 'index'])->name('others.index');
             Route::put('/others/admin', [OtherController::class, 'admin'])->name('others.admin');
             Route::put('/others/principal', [OtherController::class, 'principal'])->name('others.principal');
+            Route::put('/others/fine', [OtherController::class, 'fine'])->name('others.fines');
+
         });
     });
 });

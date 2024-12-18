@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\EmployeeJob;
 use App\Models\User;
+use App\Models\Fine;
 use DB;
 
 class OtherController extends Controller
@@ -29,11 +30,14 @@ class OtherController extends Controller
                 ->sortBy('employee.employee_name')
         ;
 
+        $fines = Fine::all();
+
         return view('other.index', [
             'page' => 'Other',
             'teachers' => $teachers,
             'admin' => $admin,
-            'principals' => $principals
+            'principals' => $principals,
+            'fines' => $fines
         ]);
     }
 
@@ -80,4 +84,26 @@ class OtherController extends Controller
         return redirect()->route('others.index')->with('success', 'Principal berhasil diubah.');
     }
 
+    public function fine(Request $request)
+    {
+        $request->validate([
+            'fine_name' => 'required|string|max:255',
+            'fine_price' => 'required|integer|min:0',
+        ]);
+    
+        $fine = Fine::find($request->input('fine_id'));
+    
+        // Pastikan denda ditemukan
+        if ($fine) {
+            // Lakukan pembaruan jika denda ditemukan
+            $fine->update([
+                'fine_name' => $request->input('fine_name'),
+                'fine_price' => $request->input('fine_price'),
+            ]);
+    
+            return redirect()->route('others.index')->with('success', 'Denda berhasil diubah!');
+        } else {
+            return redirect()->route('others.index')->with('error', 'Denda tidak ditemukan.');
+        }
+    }
 }
