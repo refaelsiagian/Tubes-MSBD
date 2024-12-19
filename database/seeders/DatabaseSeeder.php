@@ -27,7 +27,10 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             EmployeeJobSeeder::class,
             SubjectLevelSeeder::class,
-            ScheduleSeeder::class
+            ScheduleSeeder::class,
+            PresenceSeeder::class,
+            FineSeeder::class,
+            PenaltySeeder::class
         ]);
     }
 }

@@ -6,7 +6,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.122.0">
-    <title>Dashboard Template · Bootstrap v5.3</title>
+    <title>{{ $title }}</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/dashboard/">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
@@ -17,26 +17,21 @@
     <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
 
     <style>
-      /* .sidebar {
-        display: flex;
-        flex-direction: column;
-        height: 100vh; /* Mengatur tinggi sidebar menjadi 100% tinggi viewport */
-      } */
 
       header {
-  position: relative;  /* Menjaga posisi header tetap di atas */
-  z-index: 1060; /* Pastikan header di atas sidebar */
-}
+        position: relative;  /* Menjaga posisi header tetap di atas */
+        z-index: 1060; /* Pastikan header di atas sidebar */
+      }
 
 
-.sidebar {
-  position: fixed;
-  top: 0; /* Pastikan sidebar dimulai dari atas */
-  left: 0;
-  height: 100vh; /* Mengatur tinggi sidebar menjadi penuh */
-  z-index: 1050; /* Pastikan sidebar berada di bawah header */
-  margin-top: 48px; /* Sesuaikan dengan tinggi header Anda */
-}
+      .sidebar {
+        position: fixed;
+        top: 0; /* Pastikan sidebar dimulai dari atas */
+        left: 0;
+        height: 100vh; /* Mengatur tinggi sidebar menjadi penuh */
+        z-index: 1050; /* Pastikan sidebar berada di bawah header */
+        margin-top: 48px; /* Sesuaikan dengan tinggi header Anda */
+      }
 
 
 

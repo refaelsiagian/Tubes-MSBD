@@ -26,7 +26,9 @@ class ClassAdvisorController extends Controller
         return view('class-advisor.index', [
             'page' => 'Class Advisors',
             'classAdvisors' => $classAdvisors,
-            'teachers' => $teachers
+            'teachers' => $teachers,
+            'active' => 'class-advisors',
+            'title' => 'Class Advisors'
         ]);
     }
 

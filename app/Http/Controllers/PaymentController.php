@@ -14,7 +14,12 @@ class PaymentController extends Controller
     {
         $employees = Employee::select('id', 'employee_name')->get();
 
-        return view ('payment.index', compact('employees'));
+        return view ('payment.index', [
+            'page' => 'Payment',
+            'employees' => $employees,
+            'active' => 'payments',
+            'title' => 'Payment'
+        ]);
     }
 
 

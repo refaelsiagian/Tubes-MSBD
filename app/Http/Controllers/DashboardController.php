@@ -22,6 +22,11 @@ class DashboardController extends Controller
             $decryptedPhone = unserialize(Crypt::decryptString($loggedInEmployee->phone_number));
         }
     
-        return view('dashboard.index', compact('loggedInEmployee', 'decryptedPhone'));
+        return view('dashboard.index', [
+            'loggedInEmployee' => $loggedInEmployee,
+            'decryptedPhone' => $decryptedPhone,
+            'active' => 'dashboard',
+            'title' => 'Dashboard'
+        ]);
     }
 }

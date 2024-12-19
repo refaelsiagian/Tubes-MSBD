@@ -28,15 +28,15 @@
                         @csrf
                         <input type="hidden" name="employee_id" value="{{ Auth::user()->employee_id }}">
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="present" id="present" value="1">
+                            <input class="form-check-input" type="radio" name="status" id="present" value="hadir">
                             <label class="form-check-label" for="present">
-                                Present
+                                Hadir
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="present" id="absent" value="0">
+                            <input class="form-check-input" type="radio" name="status" id="absent" value="absen">
                             <label class="form-check-label" for="absent">
-                                Absent
+                                Tidak Hadir
                             </label>
                         </div>
                         <button type="submit" class="btn btn-primary mt-3">Submit</button>
@@ -65,10 +65,10 @@
                 <tr>
                     <td>{{ $history->formatted_date }}</td>
                     <td>
-                        @if ($history->present)
-                            <span class="text-success">Present</span>
+                        @if ($history->status == "hadir")
+                            <span class="text-success">Hadir</span>
                         @else
-                            <span class="text-danger">Absent</span>
+                            <span class="text-danger">Absen</span>
                         @endif
                     </td>
                     <td>{{ $history->formatted_time }}</td>

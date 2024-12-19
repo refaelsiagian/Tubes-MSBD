@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Employee;
-use App\Models\EmployeeJob;
+use App\Models\Job;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\DB;
 
 class EmployeeController extends Controller
 {
@@ -15,6 +16,8 @@ class EmployeeController extends Controller
     public function index()
     { 
         $employees = Employee::with('EmployeeJob')->get();
+
+        $jobs = Job::whereNotIn('id', [1, 2, 3, 4])->get();
 
         foreach ($employees as $employee) {
             if ($employee->account_number != null) {
@@ -27,7 +30,10 @@ class EmployeeController extends Controller
         return view('employee.index', [
             'page' => 'Employees',
             'active' => 'employees',
-            'employees' => $employees
+            'employees' => $employees,
+            'jobs' => $jobs,
+            'active' => 'employees',
+            'title' => 'Employees'
         ]);
 
     }
@@ -39,7 +45,8 @@ class EmployeeController extends Controller
     {
         return view('employee.create', [
             'page' => 'Add Employee',
-            'active' => 'employees'
+            'active' => 'employees',
+            'title' => 'Add Employee'
         ]);
     }
 
@@ -78,10 +85,14 @@ class EmployeeController extends Controller
      */
     public function edit(Employee $employee)
     {
+        $employee->phone_number = decrypt($employee->phone_number);
+        $employee->account_number = decrypt($employee->account_number);
+
         return view('employee.edit', [
             'page' => 'Edit Employee',
             'active' => 'employees',
-            'employee' => $employee
+            'employee' => $employee,
+            'title' => 'Edit Employee'
         ]); 
     }
 
@@ -90,30 +101,33 @@ class EmployeeController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, Employee $employee)
-{
-    if ($request->has('status')) {
-        $validated = $request->validate([
-            'status' => 'required|in:inactive',
+    {
+        if ($request->has('status')) {
+            $validated = $request->validate([
+                'status' => 'required|in:inactive',
+            ]);
+
+            $employee->status = $validated['status'];
+            $employee->save();
+
+            return redirect()->route('employees.index')->with('success', 'Employee status updated to inactive.');
+        }
+
+        $validatedData = $request->validate([
+            'employee_name' => 'required|string|max:255',
+            'phone_number' => 'required|string|max:20',
+            'address' => 'required|string|max:255',
+            'account_number' => 'required|string|max:20',
+            'bank_name' => 'required|string|max:100',
         ]);
 
-        $employee->status = $validated['status'];
-        $employee->save();
+        $validatedData['account_number'] = Crypt::encrypt($request->input('account_number'));
+        $validatedData['phone_number'] = Crypt::encrypt($request->input('phone_number'));
 
-        return redirect()->route('employees.index')->with('success', 'Employee status updated to inactive.');
+        $employee->update($validatedData);
+
+        return redirect()->route('employees.index')->with('success', 'Employee updated successfully.');
     }
-
-    $validatedData = $request->validate([
-        'employee_name' => 'required|string|max:255',
-        'phone_number' => 'required|string|max:20',
-        'address' => 'required|string|max:255',
-        'account_number' => 'required|string|max:20',
-        'bank_name' => 'required|string|max:100',
-    ]);
-
-    $employee->update($validatedData);
-
-    return redirect()->route('employees.index')->with('success', 'Employee updated successfully.');
-}
 
     /**
      * Remove the specified resource from storage.
@@ -122,5 +136,51 @@ class EmployeeController extends Controller
     {
         //
     }
+
+    public function job(Request $request, Employee $employee)
+    {
+        try {
+            // Validate input
+            $validated = $request->validate([
+                'job_id' => 'nullable|exists:jobs,id',
+                'employee_job_id' => 'nullable|exists:employee_jobs,id'
+            ]);
+
+            $employee_id = $employee->id;
+            $job_id = $validated['job_id'];
+            $employee_job_id = $validated['employee_job_id'];
+
+            // Call the stored procedure
+            $status = DB::select('CALL update_employee_job(?, ?, ?)', [
+                $employee_id, 
+                $job_id, 
+                $employee_job_id
+            ]);
+
+            // Return the status message
+            return redirect()->route('employees.index')->with('success', $status[0]->status);
+
+        } catch (\Illuminate\Database\QueryException $ex) {
+            // Tangkap error dari database
+            $errorMessage = $ex->getMessage();
+
+            // Jika error terkait trigger
+            if (str_contains($errorMessage, 'Orang ini')) {
+                // Bersihkan pesan error
+                $cleanMessage = preg_replace('/^SQLSTATE\[\d+\]: .*?: \d+ /', '', $errorMessage);
+                $cleanMessage = preg_replace('/\(Connection: .*?\)/', '', $cleanMessage);
+                $cleanMessage = trim($cleanMessage); // Hapus spasi berlebih di awal/akhir
+
+                return redirect()->route('employees.index')->with('error', $cleanMessage);
+            }
+        
+            // Jika error lainnya
+            return redirect()->route('employees.index')->with('error', 'Terjadi kesalahan saat memproses data.');
+        } catch (\Exception $ex) {
+            // Tangkap error umum lainnya
+            return redirect()->route('employees.index')->with('error', 'Error tidak terduga: ' . $ex->getMessage());
+        }        
+    }
+
 
 }
