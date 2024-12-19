@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\EmployeeJob;
 use App\Models\User;
+use App\Models\Level;
 use App\Models\Fine;
 use DB;
 
@@ -34,6 +35,7 @@ class OtherController extends Controller
                 ->sortBy('employee.employee_name')
         ;
 
+        $levels = Level::all();
         $fines = Fine::all();
 
         return view('other.index', [
@@ -42,6 +44,7 @@ class OtherController extends Controller
             'admin' => $admin,
             'principals' => $principals,
             'fines' => $fines,
+            'levels' => $levels,
             'inspector' => $inspector,
             'administrators' => $administrators,
             'active' => 'others',
@@ -131,5 +134,24 @@ class OtherController extends Controller
         } else {
             return redirect()->route('others.index')->with('error', 'Denda tidak ditemukan.');
         }
+    }
+
+    public function salary(Request $request)
+    {
+        // Validasi input
+        $request->validate([
+            'rates_per_lesson' => 'required|integer|min:0',
+        ]);
+
+        // Mencari level berdasarkan ID
+        $level = Level::findOrFail($request->input('level_id'));
+
+        // Memperbarui rate_per_lesson (gaji)
+        $level->update([
+            'rates_per_lesson' => $request->input('rates_per_lesson'),
+        ]);
+
+        // Redirect kembali dengan pesan sukses
+        return redirect()->route('others.index')->with('success', 'Gaji berhasil diubah!');
     }
 }

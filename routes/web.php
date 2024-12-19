@@ -84,8 +84,8 @@ Route::middleware('auth')->group(function () {
             Route::put('/others/admin', [OtherController::class, 'admin'])->name('others.admin');
             Route::put('/others/principal', [OtherController::class, 'principal'])->name('others.principal');
             Route::put('/others/fine', [OtherController::class, 'fine'])->name('others.fines');
+            Route::put('/others/salary', [OtherController::class, 'salary'])->name('others.salary');
             Route::put('/others/inspector', [OtherController::class, 'inspector'])->name('others.inspector');
-
         });
     });
 });
