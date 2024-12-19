@@ -51,12 +51,13 @@
                         </form>
 
                         @if($job->id >= 6)
-                        <form action="{{ route('jobs.destroy', $job->id) }}" method="DELETE" class="delete-form" style="display: inline-block;">
+                        <form action="{{ route('jobs.destroy', $job->id) }}" method="post" class="delete-form" style="display: inline-block;">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('Are you sure you want to delete this job?')">
                                 <i class="bi bi-trash-fill"></i>
                             </button>
+                        </form>
                         @endif
                         </td>
                     </tr>

@@ -218,7 +218,7 @@
                                                         <input type="hidden" name="fine_id" value="{{ $fine->id }}">
                                                         <div class="mb-3">
                                                             <label for="fine_name-{{ $fine->id }}" class="form-label">Nama Denda</label>
-                                                            <input type="text" class="form-control" id="fine_name-{{ $fine->id }}" name="fine_name" value="{{ $fine->fine_name }}" required>
+                                                            <input type="text" class="form-control" id="fine_name-{{ $fine->id }}" name="fine_name" value="{{ $fine->fine_name }}" readonly>
                                                         </div>
                                                         <div class="mb-3">
                                                             <label for="fine_price-{{ $fine->id }}" class="form-label">Harga Denda</label>

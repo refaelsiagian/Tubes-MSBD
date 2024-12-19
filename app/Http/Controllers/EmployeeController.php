@@ -55,6 +55,8 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
+        \Log::info('Store method triggered');
+
         $validatedData = $request->validate([
             'id' => 'required|string|unique:employees,id',
             'employee_name' => 'required|string|max:255',
@@ -64,6 +66,7 @@ class EmployeeController extends Controller
             'bank_name' => 'required|string|max:100',
         ]);
 
+        $validatedData['phone_number'] = Crypt::encrypt($request->input('phone_number'));
         $validatedData['account_number'] = Crypt::encrypt($request->input('account_number'));
     
         Employee::create($validatedData);
@@ -102,17 +105,45 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, Employee $employee)
     {
-        if ($request->has('status')) {
-            $validated = $request->validate([
-                'status' => 'required|in:inactive',
-            ]);
+        // Validasi status yang dikirimkan melalui request
+        if ($request->has('status') && $request->status == 'inactive') {
+            try {
+                // Cek apakah employee masih memiliki pekerjaan terkait
+                $hasJob = DB::table('employee_jobs')->where('employee_id', $employee->id)->exists();
 
-            $employee->status = $validated['status'];
-            $employee->save();
+                // Jika masih ada pekerjaan yang terkait, maka kita tidak bisa mengubah statusnya
+                if ($hasJob) {
+                    return redirect()->route('employees.index')->with('error', 'Cannot deactivate employee: Employee still has assigned jobs');
+                }
 
-            return redirect()->route('employees.index')->with('success', 'Employee status updated to inactive.');
+                // Update status menjadi inactive jika tidak ada pekerjaan yang terkait
+                $employee->status = 'inactive';
+                $employee->save();
+
+                return redirect()->route('employees.index')->with('success', 'Employee status updated to inactive.');
+            } catch (\Illuminate\Database\QueryException $ex) {
+                // Menangkap exception error dari database (termasuk dari trigger)
+                $errorMessage = $ex->getMessage();
+
+                // Memeriksa jika error berisi pesan dari trigger
+                if (str_contains($errorMessage, 'Cannot be inactivate employee')) {
+                    // Menangkap pesan error dari trigger
+                    $cleanMessage = preg_replace('/^SQLSTATE\[\d+\]: .*?: \d+ /', '', $errorMessage);
+                    $cleanMessage = preg_replace('/\(Connection: .*?\)/', '', $cleanMessage);
+                    $cleanMessage = trim($cleanMessage); // Hapus spasi berlebih di awal/akhir
+
+                    return redirect()->route('employees.index')->with('error', $cleanMessage);
+                }
+
+                // Menangani error lainnya
+                return redirect()->route('employees.index')->with('error', 'An error occurred while processing the data.');
+            } catch (\Exception $ex) {
+                // Menangani error umum lainnya
+                return redirect()->route('employees.index')->with('error', 'Unexpected error: ' . $ex->getMessage());
+            }
         }
 
+        // Proses update data employee selain status
         $validatedData = $request->validate([
             'employee_name' => 'required|string|max:255',
             'phone_number' => 'required|string|max:20',
@@ -121,6 +152,7 @@ class EmployeeController extends Controller
             'bank_name' => 'required|string|max:100',
         ]);
 
+        // Menyimpan data yang sudah tervalidasi
         $validatedData['account_number'] = Crypt::encrypt($request->input('account_number'));
         $validatedData['phone_number'] = Crypt::encrypt($request->input('phone_number'));
 
