@@ -13,6 +13,7 @@
 @endif
 
 <div class="container mt-3 mb-5">
+    <!-- Admin -->
     <div class="accordion" id="accordionExample">
         <div class="accordion-item">
             <h2 class="accordion-header">
@@ -30,6 +31,7 @@
                 </div>
             </div>
         </div>
+    <!-- Kepala Sekolah -->
         <div class="accordion-item">
             <h2 class="accordion-header">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
@@ -75,7 +77,7 @@
                                         Edit
                                     </button>
 
-                                    <!-- Modal Admin-->
+                                    <!-- Modal Kepala Sekolah-->
                                     <div class="modal fade" id="modal-{{ $principal->id }}" tabindex="-1" aria-labelledby="modal-{{ $principal->id }}" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                                             <div class="modal-content">
@@ -118,17 +120,64 @@
             </div>            
         </div>
         <div class="accordion-item">
-            <h2 class="accordion-header">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                <h5>Gaji Guru</h5>
-                </button>
-            </h2>
-            <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-                </div>
-            </div>
+    <h2 class="accordion-header">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+            <h5>Gaji Guru</h5>
+        </button>
+    </h2>
+    <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Level</th>
+                        <th>Gaji</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($levels as $level)
+                        <tr>
+                            <td>{{ strtoupper($level->level_name) }}</td>
+                            <td>{{ number_format($level->rates_per_lesson, 0, ',', '.') }}</td>
+                            <td>
+                                <!-- Aksi Edit -->
+                                <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#editModal-{{ $level->id }}">
+                                    Edit
+                                </button>
+
+                                <!-- Modal untuk Edit Gaji Guru -->
+                                <div class="modal fade" id="editModal-{{ $level->id }}" tabindex="-1" aria-labelledby="editModalLabel-{{ $level->id }}" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="editModalLabel-{{ $level->id }}">Edit Gaji untuk Level "{{ strtoupper($level->level_name) }}"</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form action="{{ route('others.salary') }}" method="POST">
+                                                    @csrf
+                                                    @method('PUT')
+                                                    <input type="hidden" name="level_id" value="{{ $level->id }}">
+                                                    <div class="mb-3">
+                                                        <label for="rates_per_lesson-{{ $level->id }}" class="form-label">Gaji per Pelajaran</label>
+                                                        <input type="number" class="form-control" id="rates_per_lesson-{{ $level->id }}" name="rates_per_lesson" value="{{ $level->rates_per_lesson }}" required>
+                                                    </div>
+                                                    <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
         </div>
+    </div>
+</div>
+    <!-- Denda Guru -->
         <div class="accordion-item">
             <h2 class="accordion-header">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
