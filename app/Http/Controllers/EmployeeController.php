@@ -31,7 +31,9 @@ class EmployeeController extends Controller
             'page' => 'Employees',
             'active' => 'employees',
             'employees' => $employees,
-            'jobs' => $jobs
+            'jobs' => $jobs,
+            'active' => 'employees',
+            'title' => 'Employees'
         ]);
 
     }
@@ -43,7 +45,8 @@ class EmployeeController extends Controller
     {
         return view('employee.create', [
             'page' => 'Add Employee',
-            'active' => 'employees'
+            'active' => 'employees',
+            'title' => 'Add Employee'
         ]);
     }
 
@@ -88,7 +91,8 @@ class EmployeeController extends Controller
         return view('employee.edit', [
             'page' => 'Edit Employee',
             'active' => 'employees',
-            'employee' => $employee
+            'employee' => $employee,
+            'title' => 'Edit Employee'
         ]); 
     }
 

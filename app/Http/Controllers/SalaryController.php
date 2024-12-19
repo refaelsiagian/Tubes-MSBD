@@ -44,6 +44,14 @@ class SalaryController extends Controller
         $totalSalary = $dataJobs->sum('salary'); // Gaji berdasarkan posisi pekerjaan
 
         // Return view dengan data
-        return view('salary.index', compact('data', 'dataJobs', 'TeacherSalary', 'totalSalary'));
+        return view('salary.index', [
+            'page' => 'Salary',
+            'active' => 'salary',
+            'title' => 'Salary',
+            'data' => $data,
+            'dataJobs' => $dataJobs,
+            'TeacherSalary' => $TeacherSalary,
+            'totalSalary' => $totalSalary
+        ]);
     }   
 }

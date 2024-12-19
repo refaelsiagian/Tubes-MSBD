@@ -84,7 +84,7 @@ class EmployeeJobSeeder extends Seeder
             ['id' => 61, 'employee_id' => 'EU040', 'job_id' => 6, 'code_name' => NULL, 'level_id' => null, 'room_id' => null],
             ['id' => 62, 'employee_id' => 'EU041', 'job_id' => 6, 'code_name' => NULL, 'level_id' => null, 'room_id' => null],
             ['id' => 63, 'employee_id' => 'EU042', 'job_id' => 7, 'code_name' => NULL, 'level_id' => null, 'room_id' => null],
-            ['id' => 64, 'employee_id' => 'EU043', 'job_id' => 7, 'code_name' => NULL, 'level_id' => null, 'room_id' => null],
+            ['id' => 64, 'employee_id' => 'EU043', 'job_id' => 6, 'code_name' => NULL, 'level_id' => null, 'room_id' => null],
             ['id' => 65, 'employee_id' => 'EU044', 'job_id' => 8, 'code_name' => NULL, 'level_id' => null, 'room_id' => null],
         ]);
 

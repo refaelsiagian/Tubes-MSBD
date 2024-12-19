@@ -16,8 +16,9 @@ class ScheduleController extends Controller
 
         return view('schedule.index', [
             'page' => 'Schedule',
-            'active' => 'schedule',
-            'rooms' => $rooms
+            'active' => 'schedules',
+            'rooms' => $rooms,
+            'title' => 'Schedule'
         ]);
     }
 
@@ -63,7 +64,8 @@ class ScheduleController extends Controller
 
         return view('schedule.edit', [
             'page' => 'Schedule',
-            'active' => 'schedule',
+            'active' => 'schedules',
+            'title' => 'Edit Schedule',
             'schedule' => $schedule,
             'subjects' => $subjects,
             'teachers' => $teachers

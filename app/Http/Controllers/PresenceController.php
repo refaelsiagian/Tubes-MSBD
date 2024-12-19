@@ -21,6 +21,9 @@ class PresenceController extends Controller
         $history = Presence::where('employee_id', $employee_id)->get()->sortByDesc('created_at');
 
         return view('presence.index', [
+            'page' => 'Presence',
+            'active' => 'presences',
+            'title' => 'Presence',
             'present' => $presenceToday,
             'histories' => $history
         ]);
@@ -30,7 +33,7 @@ class PresenceController extends Controller
     {
         $validated = $request->validate([
             'employee_id' => 'required',
-            'present' => 'required|boolean',
+            'status' => 'required|in:hadir,absen',
         ]);
 
         Presence::create($validated);
