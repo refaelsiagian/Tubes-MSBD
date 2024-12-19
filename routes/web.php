@@ -48,12 +48,12 @@ Route::middleware('auth')->group(function () {
                 
         Route::get('/salary', [SalaryController::class, 'index'])->name('salary.index');
 
-        Route::middleware('role:principal,teacher,admin')->group(function () {
+        Route::middleware('role:teacher,principal,admin')->group(function () {
             Route::get('/teaching-schedules', [TeachingScheduleController::class, 'index'])->name('teaching-schedules.index');
         });
     });
     
-    Route::middleware('role:foundation,admin')->group(function () {
+    Route::middleware('role:foundation,admin,principal')->group(function () {
 
         Route::get('/schedules', [ScheduleController::class, 'index'])->name('schedules.index');
         Route::get('/schedules/{room}', [ScheduleController::class, 'show'])->name('schedules.show');
@@ -74,6 +74,7 @@ Route::middleware('auth')->group(function () {
             Route::resource('/jobs', JobController::class)->except('show');
 
             Route::resource('/employees', EmployeeController::class)->except('show');
+            Route::put('/employees/job/{employee}', [EmployeeController::class, 'job'])->name('employees.job');
 
             Route::get('/payments', [PaymentController::class, 'index'])->name('payments.index');
             Route::get('/payment/{id}', [PaymentController::class, 'show'])->name('payments.show');
@@ -84,6 +85,7 @@ Route::middleware('auth')->group(function () {
             Route::put('/others/principal', [OtherController::class, 'principal'])->name('others.principal');
             Route::put('/others/fine', [OtherController::class, 'fine'])->name('others.fines');
             Route::put('/others/salary', [OtherController::class, 'salary'])->name('others.salary');
+            Route::put('/others/inspector', [OtherController::class, 'inspector'])->name('others.inspector');
         });
     });
 });

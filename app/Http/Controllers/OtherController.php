@@ -23,7 +23,11 @@ class OtherController extends Controller
                         ->sortBy('employee.employee_name')
         ;
 
+        $administrators = EmployeeJob::with('employee')->where('job_id', 6)->get()->sortBy('employee.employee_name');
+
         $admin = User::with('employee')->where('role_id', 3)->first();
+
+        $inspector = User::with('employee')->where('role_id', 5)->first();
 
         $principals = EmployeeJob::with(['employee', 'level', 'job'])
                 ->whereIn('job_id', [2, 3]) // Hanya job_id 2 atau 3
@@ -41,6 +45,10 @@ class OtherController extends Controller
             'principals' => $principals,
             'fines' => $fines,
             'levels' => $levels,
+            'inspector' => $inspector,
+            'administrators' => $administrators,
+            'active' => 'others',
+            'title' => 'Other'
         ]);
     }
 
@@ -60,6 +68,24 @@ class OtherController extends Controller
         ]);
 
         return redirect()->route('others.index')->with('success', 'Admin berhasil diubah.');
+    }
+
+    public function inspector(Request $request)
+    {
+        $request->validate([
+            'employee_id' => 'required|exists:employees,id',
+            'inspector_id' => 'required|exists:employees,id',
+        ]);
+
+        $inspector_id = $request->input('inspector_id');
+        $employee_id = $request->input('employee_id');
+
+        $result = DB::select('CALL change_inspector(?, ?)', [
+            $employee_id,
+            $inspector_id,
+        ]);
+
+        return redirect()->route('others.index')->with('success', 'Pengawas berhasil diubah.');
     }
 
     public function principal(Request $request)

@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('penalties', function (Blueprint $table) {
             $table->id();
             $table->string('employee_id');
-            $table->string('penalty_name');
-            $table->string('amount');
+            $table->foreignId('fine_id')->constrained()->onDelete('cascade');
+            $table->integer('amount');
             $table->timestamps();
         });
     }

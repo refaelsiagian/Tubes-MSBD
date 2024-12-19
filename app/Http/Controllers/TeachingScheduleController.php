@@ -32,11 +32,11 @@ class TeachingScheduleController extends Controller
                     ->get()
         ;
 
-        // dd($schedules->toJson());
-
         return view ('teaching-schedule.index', [
             'page' => 'Schedule',
-            'schedules' => $schedules
+            'schedules' => $schedules,
+            'active' => 'teaching-schedules',
+            'title' => 'Teaching Schedule'
         ]);
     }
 }

@@ -21,7 +21,7 @@ class PresenceSeeder extends Seeder
         // Buat 15 record sebagai contoh
         for ($i = 0; $i < 15; $i++) {
             // Acak status antara hadir, terlambat, dan absen
-            $statusOptions = ['hadir', 'terlambat', 'absen'];
+            $statusOptions = ['hadir', 'absen'];
             $status = $statusOptions[array_rand($statusOptions)];
 
             // Buat tanggal acak antara 17 November 2024 dan 17 Desember 2024

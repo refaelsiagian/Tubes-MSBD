@@ -58,7 +58,7 @@ class UserSeeder extends Seeder
             ['employee_id' => 'EU040', 'password' => $encryptedPassword, 'role_id' => '6'],
             ['employee_id' => 'EU041', 'password' => $encryptedPassword, 'role_id' => '6'],
             ['employee_id' => 'EU042', 'password' => $encryptedPassword, 'role_id' => '6'],
-            ['employee_id' => 'EU043', 'password' => $encryptedPassword, 'role_id' => '6'],
+            ['employee_id' => 'EU043', 'password' => $encryptedPassword, 'role_id' => '5'],
             ['employee_id' => 'EU044', 'password' => $encryptedPassword, 'role_id' => '6'],
         ]);
     }

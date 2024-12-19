@@ -8,77 +8,77 @@
       <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
         <ul class="nav flex-column">
           <li class="nav-item">
-            <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page" href="{{ route('dashboard.index') }}">
-              <svg class="bi"><use xlink:href="#house-add"/></svg>
+            <a class="nav-link d-flex align-items-center gap-2 @if($active == 'dashboard') active @endif" active" aria-current="page" href="{{ route('dashboard.index') }}">
+              <svg class="bi"><use xlink:href="#house-door-fill"/></svg>
               Dashboard
             </a>
           </li>
           @can('role', collect(['teacher', 'principal', 'admin']))
           <li class="nav-item">
-            <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page" href="{{ route('teaching-schedules.index') }}">
-              <svg class="bi"><use xlink:href="#house-add"/></svg>
+            <a class="nav-link d-flex align-items-center gap-2 @if($active == 'teaching-schedules') active @endif" aria-current="page" href="{{ route('teaching-schedules.index') }}">
+              <svg class="bi"><use xlink:href="#calendar3"/></svg>
               Teaching Schedule
             </a>
           </li>
           @endcan
           @can('role', collect(['teacher', 'employee', 'principal', 'inspector','admin']))
           <li class="nav-item">
-            <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page" href="{{ route('presences.index') }}">
-              <svg class="bi"><use xlink:href="#house-add"/></svg>
+            <a class="nav-link d-flex align-items-center gap-2 @if($active == 'presences') active @endif" aria-current="page" href="{{ route('presences.index') }}">
+              <svg class="bi"><use xlink:href="#easel2"/></svg>
               Presence
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page" href="{{ route('salary.index') }}">
-              <svg class="bi"><use xlink:href="#house-add"/></svg>
+            <a class="nav-link d-flex align-items-center gap-2 @if($active == 'salary') active @endif" aria-current="page" href="{{ route('salary.index') }}">
+              <svg class="bi"><use xlink:href="#cash"/></svg>
               Salary
             </a>
           </li>
           @endcan
           @can('role', 'foundation')
           <li class="nav-item">
-            <a class="nav-link d-flex align-items-center gap-2" href="{{ route('jobs.index') }}">
-              <svg class="bi"><use xlink:href="#file-earmark"/></svg>
+            <a class="nav-link d-flex align-items-center gap-2 @if($active == 'jobs') active @endif" aria-current="page" href="{{ route('jobs.index') }}">
+              <svg class="bi"><use xlink:href="#card-checklist"/></svg>
               Jobs
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link d-flex align-items-center gap-2" href=" {{ route('employees.index') }} ">
+            <a class="nav-link d-flex align-items-center gap-2 @if($active == 'employees') active @endif" aria-current="page" href=" {{ route('employees.index') }} ">
               <svg class="bi"><use xlink:href="#people"/></svg>
               Employees
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link d-flex align-items-center gap-2" href=" {{ route('others.index') }} ">
-              <svg class="bi"><use xlink:href="#people"/></svg>
+            <a class="nav-link d-flex align-items-center gap-2 @if($active == 'others') active @endif" aria-current="page" href=" {{ route('others.index') }} ">
+              <svg class="bi"><use xlink:href="#list"/></svg>
               Others
             </a>
           </li>
           @endcan
           @can('role', collect(['foundation', 'admin', 'principal']))
           <li class="nav-item">
-            <a class="nav-link d-flex align-items-center gap-2" href="{{ route('subjects.index') }}">
+            <a class="nav-link d-flex align-items-center gap-2 @if($active == 'subjects') active @endif" aria-current="page" href="{{ route('subjects.index') }}">
               <svg class="bi"><use xlink:href="#cart"/></svg>
               Subjects
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link d-flex align-items-center gap-2" href="{{ route('schedules.index') }}">
-              <svg class="bi"><use xlink:href="#cart"/></svg>
+            <a class="nav-link d-flex align-items-center gap-2 @if($active == 'schedules') active @endif" aria-current="page" href="{{ route('schedules.index') }}">
+              <svg class="bi"><use xlink:href="#calendar-range-fill"/></svg>
               Schedule
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link d-flex align-items-center gap-2" href="{{ route('class-advisors.index') }}">
-              <svg class="bi"><use xlink:href="#cart"/></svg>
+            <a class="nav-link d-flex align-items-center gap-2 @if($active == 'class-advisors') active @endif" aria-current="page" href="{{ route('class-advisors.index') }}">
+              <svg class="bi"><use xlink:href="#person-check"/></svg>
               Class Advisor
             </a>
           </li>
           @endcan
           @can('role', 'foundation')
           <li class="nav-item">
-            <a class="nav-link d-flex align-items-center gap-2" href=" {{ route('payments.index') }} ">
-              <svg class="bi"><use xlink:href="#people"/></svg>
+            <a class="nav-link d-flex align-items-center gap-2 @if($active == 'payments') active @endif" aria-current="page" href=" {{ route('payments.index') }} ">
+              <svg class="bi"><use xlink:href="#credit-card"/></svg>
               Payment
             </a>
           </li>

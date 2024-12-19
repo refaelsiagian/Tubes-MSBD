@@ -16,7 +16,8 @@ class JobController extends Controller
 
         return view('job.index', [
             'page' => 'Job',
-            'active' => 'job',
+            'active' => 'jobs',
+            'title' => 'Job',
             'jobs' => $jobs
         ]);
     }
@@ -28,7 +29,8 @@ class JobController extends Controller
     {
         return view('job.create', [
             'page' => 'Add Job',
-            'active' => 'job'
+            'active' => 'jobs',
+            'title' => 'Add Job'
         ]);
     }
 
@@ -62,8 +64,9 @@ class JobController extends Controller
     {
         return view('job.edit', [
             'page' => 'Edit Job',
-            'active' => 'job',
-            'job' => $job
+            'active' => 'jobs',
+            'job' => $job,
+            'title' => 'Edit Job'
         ]);
     }
 

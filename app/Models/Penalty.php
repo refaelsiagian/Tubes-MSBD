@@ -13,4 +13,9 @@ class Penalty extends Model
     {
         return $this->belongsTo(Employee::class);
     }
+
+    public function fine()
+    {
+        return $this->belongsTo(Fine::class);
+    }
 }

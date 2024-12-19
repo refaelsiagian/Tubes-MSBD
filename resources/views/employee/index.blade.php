@@ -42,6 +42,7 @@
                     <th scope="col">Adress</th>
                     <th scope="col">Account Number</th>
                     <th scope="col">Bank Name</th>
+                    <th scope="col">Job</th>
                     <th scope="col">Status</th>
                     <th scope="col">Action</th>
                 </tr>
@@ -55,6 +56,9 @@
                     <td>{{ $employee->address ?? '-' }}</td>
                     <td>{{ $employee->account_number ?? '-' }}</td>
                     <td>{{ $employee->bank_name ?? '-' }}</td>
+                    <td>
+                        {{ $employee->employeeJob->whereNotIn('job_id', [2, 3, 4])->last() ? $employee->employeeJob->whereNotIn('job_id', [2, 3, 4])->last()->job->job_name : '-' }}
+                    </td>
                     <td>{{ $employee->status }}</td>
                     <td>
                         <form action="{{ route('employees.edit', $employee->id) }}" method="post" class="d-inline">
@@ -65,6 +69,9 @@
                                 <i class="bi bi-pencil-square"></i>
                             </button>
                         </form>
+                        <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modal-job-{{ $employee->id }}">
+                            <i class="bi bi-person-workspace"></i>
+                        </button>
                         @if(optional($employee->EmployeeJob->first())->job_id != 1)
                         <form action="{{ route('employees.update', $employee->id) }}" method="post" class="d-inline">
                             @csrf
@@ -77,6 +84,44 @@
                         @endif
                     </td>
                 </tr>
+
+                <!-- Modal Job-->
+                <div class="modal fade" id="modal-job-{{ $employee->id }}" tabindex="-1" aria-labelledby="modal-job-{{ $employee->id }}" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Pekerjaan</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="{{ route('employees.job', $employee->id) }}" method="post">
+                                    @csrf
+                                    @method('PUT')
+                                    <div class="mb-3">
+                                        <input type="hidden" name="employee_job_id" value="{{ $employee->employeeJob->whereNotIn('job_id', [2, 3, 4])->last() ? $employee->employeeJob->whereNotIn('job_id', [2, 3, 4])->last()->id : '' }}">
+                                        <label for="job_id" class="form-label">{{ $employee->employee_name }}</label>
+                                        <select name="job_id" class="form-select" id="job_id">
+                                            <option value="" @if (is_null($employee->employeeJob)) selected @endif>-- No Job --</option>
+                                            @foreach ($jobs as $job)
+                                                @if ($employee->employeeJob->whereNotIn('job_id', [2, 3, 4])->last() && $job->id == $employee->employeeJob->whereNotIn('job_id', [2, 3, 4])->last()->job->id)
+                                                    <option value="{{ $job->id }}" selected>{{ $job->job_name }}</option>
+                                                @else
+                                                    <option value="{{ $job->id }}">{{ $job->job_name }}</option>
+                                                @endif
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Save changes</button>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
                 @endforeach
             </tbody>
         </table>
