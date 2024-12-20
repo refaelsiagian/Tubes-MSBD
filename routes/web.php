@@ -44,6 +44,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/presences', [PresenceController::class, 'store'])->name('presences.store');
                 
         Route::get('/salary', [SalaryController::class, 'index'])->name('salary.index');
+        Route::get('/salary/history', [SalaryController::class, 'history'])->name('salary.history');
 
         Route::middleware('role:teacher,principal,admin')->group(function () {
             Route::get('/teaching-schedules', [TeachingScheduleController::class, 'index'])->name('teaching-schedules.index');
@@ -75,6 +76,7 @@ Route::middleware('auth')->group(function () {
 
             Route::get('/payments', [PaymentController::class, 'index'])->name('payments.index');
             Route::get('/payment/{id}', [PaymentController::class, 'show'])->name('payments.show');
+            Route::get('/payment/history/{id}', [PaymentController::class, 'history'])->name('payments.history');
             Route::post('/payment/{id}', [PaymentController::class, 'uploadTransfer'])->name('payments.uploadTransfer');
 
             Route::get('/others', [OtherController::class, 'index'])->name('others.index');

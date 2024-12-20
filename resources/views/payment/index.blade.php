@@ -21,6 +21,7 @@
                 <td>{{ $employee->employee_name }}</td>
                 <td>
                     <a href="{{ route('payments.show', $employee->id) }}" class="btn btn-primary btn-sm">Payment</a>
+                    <a href="{{ route('payments.history', $employee->id) }}" class="btn btn-success btn-sm">History</a>
                 </td>
             </tr>
             @endforeach

@@ -66,7 +66,7 @@ class ScheduleController extends Controller
             'page' => $className,
             'active' => 'schedule',
             'schedules' => $schedules,
-            'title' => 'Schedule'
+            'title' => $className
         ]);
     }
 

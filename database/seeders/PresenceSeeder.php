@@ -15,32 +15,349 @@ class PresenceSeeder extends Seeder
      */
     public function run()
     {
-        $employeeId = 'EU008'; // Employee ID yang sama
-        $data = [];
 
-        // Buat 15 record sebagai contoh
-        for ($i = 0; $i < 15; $i++) {
-            // Acak status antara hadir, terlambat, dan absen
-            $statusOptions = ['hadir', 'absen'];
-            $status = $statusOptions[array_rand($statusOptions)];
+        DB::table('presences')->insert(
+        [
+            [
+                'employee_id' => 'EU008',
+                'status' => 'hadir',
+                'created_at' => '2024-11-18 07:00:00',
+                'updated_at' => '2024-11-18 07:00:00',
+            ],
+            [
+                'employee_id' => 'EU008',
+                'status' => 'hadir',
+                'created_at' => '2024-11-19 07:00:00',
+                'updated_at' => '2024-11-19 07:00:00',
+            ],
+            [
+                'employee_id' => 'EU008',
+                'status' => 'hadir',
+                'created_at' => '2024-11-20 07:00:00',
+                'updated_at' => '2024-11-20 07:00:00',
+            ],
+            [
+                'employee_id' => 'EU008',
+                'status' => 'absen',
+                'created_at' => '2024-11-21 07:00:00',
+                'updated_at' => '2024-11-21 07:00:00',
+            ],
+            [
+                'employee_id' => 'EU008',
+                'status' => 'hadir',
+                'created_at' => '2024-11-22 07:00:00',
+                'updated_at' => '2024-11-22 07:00:00',
+            ],
+            [
+                'employee_id' => 'EU008',
+                'status' => 'hadir',
+                'created_at' => '2024-11-23 07:00:00',
+                'updated_at' => '2024-11-23 07:00:00',
+            ],
+            [
+                'employee_id' => 'EU008',
+                'status' => 'hadir',
+                'created_at' => '2024-11-25 07:00:00',
+                'updated_at' => '2024-11-25 07:00:00',
+            ],
+            [
+                'employee_id' => 'EU008',
+                'status' => 'absen',
+                'created_at' => '2024-11-26 07:00:00',
+                'updated_at' => '2024-11-26 07:00:00',
+            ],
+            [
+                'employee_id' => 'EU008',
+                'status' => 'hadir',
+                'created_at' => '2024-11-27 07:00:00',
+                'updated_at' => '2024-11-27 07:00:00',
+            ],
+            [
+                'employee_id' => 'EU008',
+                'status' => 'hadir',
+                'created_at' => '2024-11-28 07:00:00',
+                'updated_at' => '2024-11-28 07:00:00',
+            ],
+            [
+                'employee_id' => 'EU008',
+                'status' => 'hadir',
+                'created_at' => '2024-11-29 07:00:00',
+                'updated_at' => '2024-11-29 07:00:00',
+            ],
+            [
+                'employee_id' => 'EU008',
+                'status' => 'hadir',
+                'created_at' => '2024-11-30 07:00:00',
+                'updated_at' => '2024-11-30 07:00:00',
+            ],
+            [
+                'employee_id' => 'EU008',
+                'status' => 'hadir',
+                'created_at' => '2024-12-02 07:00:00',
+                'updated_at' => '2024-12-02 07:00:00',
+            ],
+            [
+                'employee_id' => 'EU008',
+                'status' => 'hadir',
+                'created_at' => '2024-12-03 07:00:00',
+                'updated_at' => '2024-12-03 07:00:00',
+            ],
+            [
+                'employee_id' => 'EU008',
+                'status' => 'absen',
+                'created_at' => '2024-12-04 07:00:00',
+                'updated_at' => '2024-12-04 07:00:00',
+            ],
+            [
+                'employee_id' => 'EU008',
+                'status' => 'hadir',
+                'created_at' => '2024-12-05 07:00:00',
+                'updated_at' => '2024-12-05 07:00:00',
+            ],
+            [
+                'employee_id' => 'EU008',
+                'status' => 'hadir',
+                'created_at' => '2024-12-06 07:00:00',
+                'updated_at' => '2024-12-06 07:00:00',
+            ],
+            [
+                'employee_id' => 'EU008',
+                'status' => 'hadir',
+                'created_at' => '2024-12-07 07:00:00',
+                'updated_at' => '2024-12-07 07:00:00',
+            ],
+            [
+                'employee_id' => 'EU008',
+                'status' => 'hadir',
+                'created_at' => '2024-12-09 07:00:00',
+                'updated_at' => '2024-12-09 07:00:00',
+            ],
+            [
+                'employee_id' => 'EU008',
+                'status' => 'hadir',
+                'created_at' => '2024-12-10 07:00:00',
+                'updated_at' => '2024-12-10 07:00:00',
+            ],
+            [
+                'employee_id' => 'EU008',
+                'status' => 'hadir',
+                'created_at' => '2024-12-11 07:00:00',
+                'updated_at' => '2024-12-11 07:00:00',
+            ],
+            [
+                'employee_id' => 'EU008',
+                'status' => 'hadir',
+                'created_at' => '2024-12-12 07:00:00',
+                'updated_at' => '2024-12-12 07:00:00',
+            ],
+            [
+                'employee_id' => 'EU008',
+                'status' => 'hadir',
+                'created_at' => '2024-12-13 07:00:00',
+                'updated_at' => '2024-12-13 07:00:00',
+            ],
+            [
+                'employee_id' => 'EU008',
+                'status' => 'hadir',
+                'created_at' => '2024-12-14 07:00:00',
+                'updated_at' => '2024-12-14 07:00:00',
+            ],
+            [
+                'employee_id' => 'EU008',
+                'status' => 'hadir',
+                'created_at' => '2024-12-16 07:00:00',
+                'updated_at' => '2024-12-16 07:00:00',
+            ],
+            [
+                'employee_id' => 'EU008',
+                'status' => 'hadir',
+                'created_at' => '2024-12-17 07:00:00',
+                'updated_at' => '2024-12-17 07:00:00',
+            ],
+            [
+                'employee_id' => 'EU008',
+                'status' => 'hadir',
+                'created_at' => '2024-12-18 07:00:00',
+                'updated_at' => '2024-12-18 07:00:00',
+            ],
+            [
+                'employee_id' => 'EU008',
+                'status' => 'hadir',
+                'created_at' => '2024-12-19 07:00:00',
+                'updated_at' => '2024-12-19 07:00:00',
+            ],
+        ]);
 
-            // Buat tanggal acak antara 17 November 2024 dan 17 Desember 2024
-            $createdAt = Carbon::createFromTimestamp(rand(
-                Carbon::create(2024, 11, 17)->timestamp,
-                Carbon::create(2024, 12, 17)->timestamp
-            ))->toDateTimeString();
-
-            // Tambahkan data ke array
-            $data[] = [
-                'employee_id' => $employeeId,
-                'status' => $status,
-                'created_at' => $createdAt,
-                'updated_at' => $createdAt,
-            ];
-        }
-
-        // Insert ke database
-        DB::table('presences')->insert($data);
+        DB::table('presences')->insert([
+            [
+                'employee_id' => 'EU017',
+                'status' => 'hadir',
+                'created_at' => '2024-11-18 07:00:00',
+                'updated_at' => '2024-11-18 07:00:00',
+            ],
+            [
+                'employee_id' => 'EU017',
+                'status' => 'hadir',
+                'created_at' => '2024-11-19 07:00:00',
+                'updated_at' => '2024-11-19 07:00:00',
+            ],
+            [
+                'employee_id' => 'EU017',
+                'status' => 'hadir',
+                'created_at' => '2024-11-20 07:00:00',
+                'updated_at' => '2024-11-20 07:00:00',
+            ],
+            [
+                'employee_id' => 'EU017',
+                'status' => 'absen',
+                'created_at' => '2024-11-21 07:00:00',
+                'updated_at' => '2024-11-21 07:00:00',
+            ],
+            [
+                'employee_id' => 'EU017',
+                'status' => 'hadir',
+                'created_at' => '2024-11-22 07:00:00',
+                'updated_at' => '2024-11-22 07:00:00',
+            ],
+            [
+                'employee_id' => 'EU017',
+                'status' => 'hadir',
+                'created_at' => '2024-11-23 07:00:00',
+                'updated_at' => '2024-11-23 07:00:00',
+            ],
+            [
+                'employee_id' => 'EU017',
+                'status' => 'hadir',
+                'created_at' => '2024-11-25 07:00:00',
+                'updated_at' => '2024-11-25 07:00:00',
+            ],
+            [
+                'employee_id' => 'EU017',
+                'status' => 'absen',
+                'created_at' => '2024-11-26 07:00:00',
+                'updated_at' => '2024-11-26 07:00:00',
+            ],
+            [
+                'employee_id' => 'EU017',
+                'status' => 'hadir',
+                'created_at' => '2024-11-27 07:00:00',
+                'updated_at' => '2024-11-27 07:00:00',
+            ],
+            [
+                'employee_id' => 'EU017',
+                'status' => 'hadir',
+                'created_at' => '2024-11-28 07:00:00',
+                'updated_at' => '2024-11-28 07:00:00',
+            ],
+            [
+                'employee_id' => 'EU017',
+                'status' => 'hadir',
+                'created_at' => '2024-11-29 07:00:00',
+                'updated_at' => '2024-11-29 07:00:00',
+            ],
+            [
+                'employee_id' => 'EU017',
+                'status' => 'hadir',
+                'created_at' => '2024-11-30 07:00:00',
+                'updated_at' => '2024-11-30 07:00:00',
+            ],
+            [
+                'employee_id' => 'EU017',
+                'status' => 'hadir',
+                'created_at' => '2024-12-02 07:00:00',
+                'updated_at' => '2024-12-02 07:00:00',
+            ],
+            [
+                'employee_id' => 'EU017',
+                'status' => 'hadir',
+                'created_at' => '2024-12-03 07:00:00',
+                'updated_at' => '2024-12-03 07:00:00',
+            ],
+            [
+                'employee_id' => 'EU017',
+                'status' => 'absen',
+                'created_at' => '2024-12-04 07:00:00',
+                'updated_at' => '2024-12-04 07:00:00',
+            ],
+            [
+                'employee_id' => 'EU017',
+                'status' => 'hadir',
+                'created_at' => '2024-12-05 07:00:00',
+                'updated_at' => '2024-12-05 07:00:00',
+            ],
+            [
+                'employee_id' => 'EU017',
+                'status' => 'hadir',
+                'created_at' => '2024-12-06 07:00:00',
+                'updated_at' => '2024-12-06 07:00:00',
+            ],
+            [
+                'employee_id' => 'EU017',
+                'status' => 'hadir',
+                'created_at' => '2024-12-07 07:00:00',
+                'updated_at' => '2024-12-07 07:00:00',
+            ],
+            [
+                'employee_id' => 'EU017',
+                'status' => 'hadir',
+                'created_at' => '2024-12-09 07:00:00',
+                'updated_at' => '2024-12-09 07:00:00',
+            ],
+            [
+                'employee_id' => 'EU017',
+                'status' => 'hadir',
+                'created_at' => '2024-12-10 07:00:00',
+                'updated_at' => '2024-12-10 07:00:00',
+            ],
+            [
+                'employee_id' => 'EU017',
+                'status' => 'hadir',
+                'created_at' => '2024-12-11 07:00:00',
+                'updated_at' => '2024-12-11 07:00:00',
+            ],
+            [
+                'employee_id' => 'EU017',
+                'status' => 'hadir',
+                'created_at' => '2024-12-12 07:00:00',
+                'updated_at' => '2024-12-12 07:00:00',
+            ],
+            [
+                'employee_id' => 'EU017',
+                'status' => 'hadir',
+                'created_at' => '2024-12-13 07:00:00',
+                'updated_at' => '2024-12-13 07:00:00',
+            ],
+            [
+                'employee_id' => 'EU017',
+                'status' => 'hadir',
+                'created_at' => '2024-12-14 07:00:00',
+                'updated_at' => '2024-12-14 07:00:00',
+            ],
+            [
+                'employee_id' => 'EU017',
+                'status' => 'hadir',
+                'created_at' => '2024-12-16 07:00:00',
+                'updated_at' => '2024-12-16 07:00:00',
+            ],
+            [
+                'employee_id' => 'EU017',
+                'status' => 'hadir',
+                'created_at' => '2024-12-17 07:00:00',
+                'updated_at' => '2024-12-17 07:00:00',
+            ],
+            [
+                'employee_id' => 'EU017',
+                'status' => 'hadir',
+                'created_at' => '2024-12-18 07:00:00',
+                'updated_at' => '2024-12-18 07:00:00',
+            ],
+            [
+                'employee_id' => 'EU017',
+                'status' => 'hadir',
+                'created_at' => '2024-12-19 07:00:00',
+                'updated_at' => '2024-12-19 07:00:00',
+            ],
+        ]);
     }
 
 }
