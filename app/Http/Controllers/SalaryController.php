@@ -5,6 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use App\Models\EmployeeJob;
+use App\Models\Job;
+use App\Models\Employee;
+use App\Models\PaymentHistory;
+use App\Models\Penalty;
 
 class SalaryController extends Controller
 {
@@ -12,6 +17,28 @@ class SalaryController extends Controller
     {
         // Ambil user yang sedang login
         $user = Auth::user();
+
+        $currentDate = now();
+        $lastMonth = $currentDate->copy()->subMonth();
+
+        $paymentHistory = PaymentHistory::where('employee_id', $user->employee->id)->latest()->first();
+
+        $hasLastMonthPayment = PaymentHistory::where('employee_id', $user->employee->id)
+            ->whereYear('date', $lastMonth->year)
+            ->whereMonth('date', $lastMonth->month)
+            ->exists();
+
+        $date = !$hasLastMonthPayment ? $lastMonth : $currentDate;
+
+        $penalties = Penalty::where('employee_id', $user->employee->id)
+            ->when(!$hasLastMonthPayment, function ($query) use ($lastMonth) {
+                return $query->whereYear('created_at', $lastMonth->year)
+                            ->whereMonth('created_at', $lastMonth->month);
+            }, function ($query) use ($currentDate) {
+                return $query->whereYear('created_at', $currentDate->year)
+                            ->whereMonth('created_at', $currentDate->month);
+            })
+            ->get();
 
         // Ambil data pelajaran terkait user login
         $data = DB::table('lesson_count_view')
@@ -43,6 +70,8 @@ class SalaryController extends Controller
         // Hitung total gaji berdasarkan posisi pekerjaan (guru, wali kelas, kepala sekolah)
         $totalSalary = $dataJobs->sum('salary'); // Gaji berdasarkan posisi pekerjaan
 
+        $totalPenalty = $penalties->sum('amount');
+
         // Return view dengan data
         return view('salary.index', [
             'page' => 'Salary',
@@ -51,7 +80,26 @@ class SalaryController extends Controller
             'data' => $data,
             'dataJobs' => $dataJobs,
             'TeacherSalary' => $TeacherSalary,
-            'totalSalary' => $totalSalary
+            'totalSalary' => $totalSalary,
+            'totalPenalty' => $totalPenalty,
+            'paymentHistory' => $paymentHistory,
+            'date' => $date,
+            'penalties' => $penalties
         ]);
-    }   
+    }
+
+    public function history()
+    {
+        // Ambil user yang sedang login
+        $user = Auth::user();
+
+        $paymentHistories = PaymentHistory::where('employee_id', $user->employee->id)->get();
+
+        return view('salary.history', [
+            'paymentHistories' => $paymentHistories,
+            'page' => 'Salary',
+            'active' => 'salary',
+            'title' => 'Salary'
+        ]);
+    }
 }

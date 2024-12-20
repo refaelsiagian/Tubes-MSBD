@@ -75,7 +75,7 @@ return new class extends Migration
 
                     -- Masukkan ke tabel penalties
                     INSERT INTO penalties (employee_id, fine_id, amount, created_at, updated_at)
-                    VALUES (NEW.employee_id, 2, lesson_count * fine_amount, NOW(), NOW());
+                    VALUES (NEW.employee_id, 2, lesson_count * fine_amount, NEW.created_at, NEW.created_at);
                 END IF;
             END;
         ");

@@ -43,7 +43,8 @@ class ScheduleController extends Controller
         return view('schedule.show', [
             'page' => $className,
             'active' => 'schedule',
-            'schedules' => $schedules
+            'schedules' => $schedules,
+            'title' => $className
         ]);
     }
 

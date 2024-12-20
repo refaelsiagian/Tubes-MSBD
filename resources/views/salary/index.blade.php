@@ -6,6 +6,8 @@
     <h1 class="h2">Salary</h1>
 </div>
 
+<a href="{{ route('salary.history') }}" class="btn btn-primary">Payment History</a>
+
 <div class="container mt-3 mb-5">
     <div class="row g-3">
         
@@ -37,8 +39,34 @@
             </table>
         @endif
         
+        @if($penalties->isNotEmpty())
+        <h5 class="mt-4 mb-4">Rincian Pengurangan Gaji</h5>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Tanggal</th>
+                    <th>Jenis Denda</th>
+                    <th>Jumlah</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($penalties as $penalty)
+                <tr>
+                    <td>{{ $penalty->created_at->translatedFormat('l, d F Y') }}</td>
+                    <td>{{ $penalty->fine->fine_name }}</td>
+                    <td>Rp{{ number_format($penalty->amount, 0, ',', '.') }}</td>
+                </tr>
+                @endforeach
+                <tr>
+                    <td colspan="2" class="text-end"><strong>Total Denda</strong></td>
+                    <td><strong>Rp{{ number_format($totalPenalty, 0, ',', '.') }}</strong></td>
+                </tr>
+            </tbody>
+        </table>
+        @endif
+
         <!-- Rincian Total Gaji -->
-        <h5>Rincian Total Gaji</h5>
+        <h5>Rincian Total Gaji: {{ $date->translatedFormat('F Y') }}</h5>
         <table class="table table-bordered">
             <thead>
                 <tr>
@@ -66,9 +94,15 @@
                         </tr>
                     @endif
                 @endforeach
+                @if($penalties->isNotEmpty())
+                <tr>
+                    <td class="text-end text-danger fw-bold">Total Denda</td>
+                    <td class="text-danger fw-bold">Rp{{ number_format($totalPenalty, 0, ',', '.') }}</td>
+                </tr>
+                @endif
                 <tr>
                     <td class="text-end"><strong>Total Gaji</strong></td>
-                    <td><strong>Rp{{ number_format($TeacherSalary + $totalSalary, 0, ',', '.') }}</strong></td>
+                    <td><strong>Rp{{ number_format($TeacherSalary + $totalSalary - $totalPenalty, 0, ',', '.') }}</strong></td>
                 </tr>
             </tbody>
         </table>
