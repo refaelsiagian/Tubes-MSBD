@@ -3,11 +3,6 @@
 @section('content')
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">Job</h1>
-
-        <form action="{{ route('jobs.index') }}" class="d-flex mt-3 mt-lg-0" role="search">
-            <input class="form-control me-2" type="search" name="search" placeholder="Search" aria-label="Search" value="{{ request('search') }}">
-            <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
     </div>
 
     @if(session('success'))
