@@ -4,17 +4,7 @@
 
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">Employees</h1>
-        <div class="btn-group btn-group-sm me-2" role="group" aria-label="Basic outlined example">
-            <form action="{{ route('employees.index') }}" method="get">
-                <button type="submit" name="status" value="active" class="btn btn-outline-primary">Active</button>
-                <button type="submit" name="status" value="inactive" class="btn btn-outline-danger">Inactive</button>
-            </form>
-        </div>
-        <form action="{{ route('employees.index') }}" class="d-flex mt-3 mt-lg-0" role="search">
-            <input type="hidden" name="status" value="{{ request('status') }}">
-            <input class="form-control me-2" type="search" name="search" placeholder="Search" aria-label="Search" value="{{ request('search') }}">
-            <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
+        <div class="btn-group btn-group-sm me-2" role="group" aria-label="Basic outlined example"></div>
     </div>
 
     <!-- Bagian untuk menampilkan pesan -->

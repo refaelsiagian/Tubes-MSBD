@@ -5,7 +5,7 @@
 	<meta name="author" content="Muhamad Nauval Azhar">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<meta name="description" content="This is a login page template based on Bootstrap 5">
-	<title>Tubes Blog | </title>
+	<title>Era Utama</title>
 	<link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
 	<link rel="icon" type="image/jpeg" href="">
 </head>
@@ -18,7 +18,6 @@
 					<div class="card shadow-lg my-3">
 						<div class="card-body p-5">
 							<div class="text-center mb-4">
-								<img src="" class="w-25 img rounded" alt="logo">
 							</div>
 							
 							@yield('content')
