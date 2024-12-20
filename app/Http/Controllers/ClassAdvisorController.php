@@ -12,17 +12,39 @@ use Illuminate\Support\Facades\DB;
 class ClassAdvisorController extends Controller
 {
     public function index() {
-        $classAdvisors = ClassAdvisor::with('employeeJob')
-                        ->with('room')
-                        ->get()
-        ;
-
+        $user = auth()->user();
+        $loggedInEmployee = $user->employee;
+    
+        // Pastikan ada employee yang login
+        if ($loggedInEmployee) {
+            // Ambil job_id dari jobs yang dimiliki oleh employee
+            $jobIds = $loggedInEmployee->jobs->pluck('id')->toArray();
+    
+            // Cek apakah employee memiliki job Kepala/Wakil Kepala Sekolah (job_id 2 atau 3)
+            if (in_array(2, $jobIds) || in_array(3, $jobIds)) {
+                // Filter berdasarkan level yang sesuai
+                $classAdvisors = ClassAdvisor::with('employeeJob', 'room')
+                    ->whereHas('room', function ($query) use ($loggedInEmployee) {
+                        // Ambil level_id yang ada di pivot tabel untuk job yang login
+                        $levelIds = $loggedInEmployee->jobs->pluck('pivot.level_id')->toArray();
+                        $query->whereIn('level_id', $levelIds); // Cek apakah level_id ada dalam list level_id
+                    })
+                    ->get();
+            } else {
+                // Tampilkan semua data classAdvisor jika bukan Kepala/Wakil Kepala Sekolah
+                $classAdvisors = ClassAdvisor::with('employeeJob', 'room')->get();
+            }
+        } else {
+            // Jika tidak ada employee yang login, tampilkan semua classAdvisors
+            $classAdvisors = ClassAdvisor::with('employeeJob', 'room')->get();
+        }
+    
+        // Ambil data teacher (guru)
         $teachers = EmployeeJob::with('employee')
-                        ->where('job_id', 5)
+                        ->where('job_id', 5) // Guru
                         ->get()
-                        ->sortBy('employee.employee_name')
-        ;
-
+                        ->sortBy('employee.employee_name');
+    
         return view('class-advisor.index', [
             'page' => 'Class Advisors',
             'classAdvisors' => $classAdvisors,
@@ -31,6 +53,7 @@ class ClassAdvisorController extends Controller
             'title' => 'Class Advisors'
         ]);
     }
+        
 
     public function update(Request $request, Room $room) {
         

@@ -23,6 +23,7 @@ class SubjectController extends Controller
             'page' => 'Subjects',
             'active' => 'subject',
             'subjects' => $subjects,
+            'title' => 'Subjects'
         ]);
     }
 
@@ -39,6 +40,7 @@ class SubjectController extends Controller
             'active' => 'subject',
             'levels' => $levels,
             'majors' => $majors,
+            'title' => 'Subjects'
         ]);
     }
 
@@ -54,6 +56,7 @@ class SubjectController extends Controller
             'levels.*' => 'exists:levels,id',
             'majors' => 'nullable|array',
             'majors.*' => 'exists:majors,id',
+            'title' => 'Subjects'
         ]);
     
         // Buat Subject baru dan pastikan disimpan terlebih dahulu
@@ -95,6 +98,7 @@ class SubjectController extends Controller
             'levels' => $levels,
             'majors' => $majors,
             'subjectLevels' => $subjectLevels,
+            'title' => 'Subjects'
         ]);
     }
 
@@ -110,6 +114,7 @@ class SubjectController extends Controller
             'levels.*' => 'exists:levels,id',
             'majors' => 'nullable|array',
             'majors.*' => 'exists:majors,id',
+            'title' => 'Subjects'
         ]);
 
         // Update Subject
@@ -117,20 +122,19 @@ class SubjectController extends Controller
         $subject->subject_abb = $validatedData['subject_abb'];
         $subject->save();
     
-// Contoh untuk levels
-$levelsJson = json_encode($validatedData['levels']); // Mengubah array levels menjadi JSON
-$majorsJson = json_encode($validatedData['majors']); // Mengubah array majors menjadi JSON
+        // Contoh untuk levels
+        $levelsJson = json_encode($validatedData['levels']); // Mengubah array levels menjadi JSON
+        $majorsJson = json_encode($validatedData['majors']); // Mengubah array majors menjadi JSON
 
-// Panggil stored procedure untuk update
-DB::statement('CALL UpdateSubjectLevelAndMajor(?, ?, ?)', [
-    $subject->id,
-    $levelsJson,
-    $majorsJson
-]);
-return redirect()->route('subjects.index')->with('success', 'Subject updated successfully');
+        // Panggil stored procedure untuk update
+        DB::statement('CALL update_subject_level_and_major(?, ?, ?)', [
+            $subject->id,
+            $levelsJson,
+            $majorsJson
+        ]);
+        return redirect()->route('subjects.index')->with('success', 'Subject updated successfully');
 
 }
-
 
     /**
      * Remove the specified resource from storage.

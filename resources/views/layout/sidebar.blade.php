@@ -55,13 +55,15 @@
             </a>
           </li>
           @endcan
-          @can('role', collect(['foundation', 'admin', 'principal']))
+          @can('role', collect(['admin']))
           <li class="nav-item">
             <a class="nav-link d-flex align-items-center gap-2 @if($active == 'subjects') active @endif" aria-current="page" href="{{ route('subjects.index') }}">
               <svg class="bi"><use xlink:href="#cart"/></svg>
               Subjects
             </a>
           </li>
+          @endcan
+          @can('role', collect(['foundation', 'admin', 'principal']))
           <li class="nav-item">
             <a class="nav-link d-flex align-items-center gap-2 @if($active == 'schedules') active @endif" aria-current="page" href="{{ route('schedules.index') }}">
               <svg class="bi"><use xlink:href="#calendar-range-fill"/></svg>

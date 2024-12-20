@@ -34,7 +34,8 @@ class Employee extends Model
 
     public function jobs()
     {
-        return $this->belongsToMany(Job::class, 'employee_jobs', 'employee_id', 'job_id');
+        return $this->belongsToMany(Job::class, 'employee_jobs', 'employee_id', 'job_id')
+                    ->withPivot('level_id');
     }
 
     public function presence()

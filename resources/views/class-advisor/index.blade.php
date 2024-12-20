@@ -20,9 +20,9 @@
                 <div>
                     <h5 class="mb-1">{{ $advisor->room->class_name }}</h5>
                     @if ($advisor->employeeJob)
-                    <p class="mb-0">Wali kelas: {{ $advisor->employeeJob->employee->employee_name }}</p>
+                        <p class="mb-0">Wali kelas: {{ $advisor->employeeJob->employee->employee_name }}</p>
                     @else
-                    <p class="mb-0">Wali kelas: -</p>
+                        <p class="mb-0">Wali kelas: -</p>
                     @endif
                 </div>
 
@@ -72,6 +72,5 @@
         @endforeach
     </div>
 </div>
-
 
 @endsection

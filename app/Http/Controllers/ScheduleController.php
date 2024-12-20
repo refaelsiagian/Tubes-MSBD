@@ -12,7 +12,28 @@ class ScheduleController extends Controller
 {
     public function index()
     {
-        $rooms = Room::with('level')->get();
+        $user = auth()->user();
+        $loggedInEmployee = $user->employee;
+
+        // Pastikan ada employee yang login
+        if ($loggedInEmployee) {
+            // Ambil job_id dari jobs yang dimiliki oleh employee
+            $jobIds = $loggedInEmployee->jobs->pluck('id')->toArray();
+
+            // Cek apakah employee memiliki job Kepala/Wakil Kepala Sekolah (job_id 2 atau 3)
+            if (in_array(2, $jobIds) || in_array(3, $jobIds)) {
+                // Filter berdasarkan level yang sesuai
+                $rooms = Room::with('level')
+                    ->whereIn('level_id', $loggedInEmployee->jobs->pluck('pivot.level_id')->toArray())
+                    ->get();
+            } else {
+                // Tampilkan semua data rooms jika bukan Kepala/Wakil Kepala Sekolah
+                $rooms = Room::with('level')->get();
+            }
+        } else {
+            // Jika tidak ada employee yang login, tampilkan semua rooms
+            $rooms = Room::with('level')->get();
+        }
 
         return view('schedule.index', [
             'page' => 'Schedule',
@@ -21,6 +42,7 @@ class ScheduleController extends Controller
             'title' => 'Schedule'
         ]);
     }
+    
 
     public function show(Room $room)
     {
