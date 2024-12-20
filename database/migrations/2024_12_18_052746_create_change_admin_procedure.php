@@ -17,18 +17,30 @@ return new class extends Migration
                 IN new_admin_id VARCHAR(10)  -- employee_id yang rolenya diubah ke 3
             )
             BEGIN
+                -- Mulai transaksi
+                DECLARE EXIT HANDLER FOR SQLEXCEPTION
+                BEGIN
+                    -- Jika ada kesalahan, rollback semua perubahan
+                    ROLLBACK;
+                END;
+
+                START TRANSACTION;
+
                 -- Ubah role_id admin lama menjadi 4 (guru)
                 UPDATE users
-                    SET role_id = 4
-                    WHERE employee_id = CAST(old_admin_id AS CHAR CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci);
+                SET role_id = 4
+                WHERE employee_id = CAST(old_admin_id AS CHAR CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci);
 
-                    -- Ubah role_id user baru menjadi 3 (admin)
-                    UPDATE users
-                    SET role_id = 3
-                    WHERE employee_id = CAST(new_admin_id AS CHAR CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci);
+                -- Ubah role_id user baru menjadi 3 (admin)
+                UPDATE users
+                SET role_id = 3
+                WHERE employee_id = CAST(new_admin_id AS CHAR CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci);
 
-                END;
+                -- Commit transaksi jika semua berhasil
+                COMMIT;
+            END;
         ');
+
     }
 
     /**

@@ -12,8 +12,21 @@ return new class extends Migration
     public function up(): void
     {
         DB::statement("
-            CREATE PROCEDURE change_principal(IN principal_id VARCHAR(255), IN new_employee_id VARCHAR(255), IN position_id INT)
+            CREATE PROCEDURE change_principal(
+                IN principal_id VARCHAR(255), 
+                IN new_employee_id VARCHAR(255), 
+                IN position_id INT
+            )
             BEGIN
+                -- Penanganan error untuk rollback jika terjadi kesalahan
+                DECLARE EXIT HANDLER FOR SQLEXCEPTION
+                BEGIN
+                    ROLLBACK;
+                END;
+
+                -- Mulai transaksi
+                START TRANSACTION;
+
                 -- Step 1: Update the principal's role to 4 (guru)
                 UPDATE users
                 SET role_id = 4
@@ -28,8 +41,12 @@ return new class extends Migration
                 UPDATE employee_jobs
                 SET employee_id = new_employee_id
                 WHERE id = position_id;
+
+                -- Commit transaksi jika semua langkah berhasil
+                COMMIT;
             END;
         ");
+
     }
 
     /**

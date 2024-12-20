@@ -17,6 +17,15 @@ return new class extends Migration
                 IN old_inspector_id VARCHAR(10)  -- ID pengawas yang akan diberikan role 6 (karyawan biasa)
             )
             BEGIN
+                -- Jika terjadi kesalahan, batalkan semua perubahan
+                DECLARE CONTINUE HANDLER FOR SQLEXCEPTION 
+                BEGIN
+                    ROLLBACK;
+                END;
+                
+                -- Mulai transaksi
+                START TRANSACTION;
+
                 -- Ubah role_id employee menjadi 5 (inspector)
                 UPDATE users
                 SET role_id = 5
@@ -26,8 +35,12 @@ return new class extends Migration
                 UPDATE users
                 SET role_id = 6
                 WHERE employee_id = CAST(old_inspector_id AS CHAR) COLLATE utf8mb4_unicode_ci;
+
+                -- Commit transaksi jika semua berhasil
+                COMMIT;
             END;
         ");
+
     }
 
     /**
