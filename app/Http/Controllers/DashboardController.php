@@ -14,8 +14,11 @@ class DashboardController extends Controller
     {
         $user = Auth::user();
 
-        $loggedInEmployee = $user->employee;
-        $jobTitles = $loggedInEmployee->jobs()->pluck('job_name'); 
+        $loggedInEmployee = $user->employee->load([
+            'jobs' => function ($query) {
+                $query->withPivot('level_id'); // Memastikan level_id tersedia
+            }
+        ]); 
     
         $decryptedPhone = null;
         if ($loggedInEmployee->phone_number) {

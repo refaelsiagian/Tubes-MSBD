@@ -70,6 +70,8 @@ class PaymentController extends Controller
             'totalSalary' => $totalSalary,
             'totalPayment' => $totalPayment,
             'paymentHistory' => $paymentHistory,
+            'title' => 'Payment',
+            'active' => 'payments'
         ]);
     }
 

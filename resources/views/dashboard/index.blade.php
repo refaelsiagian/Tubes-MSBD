@@ -15,11 +15,19 @@
             <div class="card-body text-center">
                 <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava6.webp"
                      alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
-                <h5 class="my-3">{{ $loggedInEmployee->employee_name ?? 'No Name' }}</h5>
-                @foreach($loggedInEmployee->jobs->unique('job_name') as $job)
-                     <p>{{ $job->job_name }}</p>
-                @endforeach
+                     <h5 class="my-3">{{ $loggedInEmployee->employee_name ?? 'No Name' }}</h5>
 
+                    @foreach($loggedInEmployee->jobs as $job)
+                        @if(in_array($job->id, [2, 3])) {{-- Cek jika job_id adalah 2 atau 3 --}}
+                            @php
+                                // Ambil level_name berdasarkan level_id di tabel pivot
+                                $levelName = \App\Models\Level::find($job->pivot->level_id)->level_name ?? 'Level tidak ditemukan';
+                            @endphp
+                            <p>{{ $job->job_name }} {{ strtoupper($levelName) }}</p>
+                        @else
+                            <p>{{ $job->job_name }}</p>
+                        @endif
+                    @endforeach
             </div>
         </div>
     </div>

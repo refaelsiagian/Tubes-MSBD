@@ -23,7 +23,7 @@ class SubjectController extends Controller
             'page' => 'Subjects',
             'active' => 'subject',
             'subjects' => $subjects,
-            'title' => 'Subjects', 
+            'title' => 'Subjects'
         ]);
     }
 
@@ -40,7 +40,7 @@ class SubjectController extends Controller
             'active' => 'subject',
             'levels' => $levels,
             'majors' => $majors,
-            'title' => 'Subjects',
+            'title' => 'Subjects'
         ]);
     }
 
@@ -56,6 +56,7 @@ class SubjectController extends Controller
             'levels.*' => 'exists:levels,id',
             'majors' => 'nullable|array',
             'majors.*' => 'exists:majors,id',
+            'title' => 'Subjects'
         ]);
     
         // Buat Subject baru dan pastikan disimpan terlebih dahulu
@@ -97,7 +98,7 @@ class SubjectController extends Controller
             'levels' => $levels,
             'majors' => $majors,
             'subjectLevels' => $subjectLevels,
-            'title' => 'Subjects',
+            'title' => 'Subjects'
         ]);
     }
 
@@ -113,6 +114,7 @@ class SubjectController extends Controller
             'levels.*' => 'exists:levels,id',
             'majors' => 'nullable|array',
             'majors.*' => 'exists:majors,id',
+            'title' => 'Subjects'
         ]);
 
         // Update Subject

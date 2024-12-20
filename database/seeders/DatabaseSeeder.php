@@ -28,8 +28,8 @@ class DatabaseSeeder extends Seeder
             EmployeeJobSeeder::class,
             SubjectLevelSeeder::class,
             ScheduleSeeder::class,
-            // PresenceSeeder::class,
             FineSeeder::class,
+            PresenceSeeder::class,
             PenaltySeeder::class
         ]);
     }
