@@ -90,18 +90,25 @@ class JobController extends Controller
      */
     public function destroy(Job $job)
     {
-        if ($job->employees()->exists()) {
-            return redirect()->route('jobs.index')->with('error', 'Job cannot be deleted because it is associated with employees.');
+        try {
+            // Validasi hanya job dengan id >= 6 yang bisa dihapus
+            if ($job->id < 6) {
+                return redirect()->route('jobs.index')->with('error', 'This job cannot be deleted.');
+            }
+    
+            // Hapus job jika validasi terpenuhi
+            $job->delete();
+    
+            return redirect()->route('jobs.index')->with('success', 'Job deleted successfully.');
+        
+        } catch (\Illuminate\Database\QueryException $e) {
+            // Tangani error jika job masih digunakan oleh employee (trigger akan membuang error)
+            if ($e->getCode() == '45000') {
+                return redirect()->route('jobs.index')->with('error', 'Cannot delete job: Job is still assigned to employees.');
+            }
+    
+            // Jika ada error lain, lemparkan exception
+            throw $e;
         }
-    
-        // Validasi hanya job dengan id >= 6 yang bisa dihapus
-        if ($job->id < 6) {
-            return redirect()->route('jobs.index')->with('error', 'This job cannot be deleted.');
-        }
-    
-        // Hapus job jika validasi terpenuhi
-        $job->delete();
-    
-        return redirect()->route('jobs.index')->with('success', 'Job deleted successfully.');
-    }
+}
 }

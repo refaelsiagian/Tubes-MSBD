@@ -12,7 +12,6 @@ use App\Http\Controllers\SalaryController;
 use App\Http\Controllers\ClassAdvisorController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PresenceController;
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TeachingScheduleController;
 use App\Http\Controllers\OtherController;
 
@@ -38,8 +37,6 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth')->group(function () {
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
-
-    Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
 
     Route::middleware('role:principal,teacher,inspector,employee,admin')->group(function () {
 
