@@ -14,6 +14,7 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PresenceController;
 use App\Http\Controllers\TeachingScheduleController;
 use App\Http\Controllers\OtherController;
+use App\Http\Controllers\PenaltyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,6 +49,11 @@ Route::middleware('auth')->group(function () {
 
         Route::middleware('role:teacher,principal,admin')->group(function () {
             Route::get('/teaching-schedules', [TeachingScheduleController::class, 'index'])->name('teaching-schedules.index');
+        });
+
+        Route::middleware('role:inspector')->group(function () {
+            Route::get('/penalties', [PenaltyController::class, 'index'])->name('penalty.index');
+            Route::post('/penalties', [PenaltyController::class, 'store'])->name('penalty.store');
         });
     });
     

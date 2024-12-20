@@ -63,6 +63,14 @@
             </a>
           </li>
           @endcan
+          @can('role', collect(['inspector']))
+          <li class="nav-item">
+            <a class="nav-link d-flex align-items-center gap-2 @if($active == 'penalty') active @endif" aria-current="page" href="{{ route('penalty.index') }}">
+              <svg class="bi"><use xlink:href="#cart"/></svg>
+              Penalty
+            </a>
+          </li>
+          @endcan
           @can('role', collect(['foundation', 'admin', 'principal']))
           <li class="nav-item">
             <a class="nav-link d-flex align-items-center gap-2 @if($active == 'schedules') active @endif" aria-current="page" href="{{ route('schedules.index') }}">
